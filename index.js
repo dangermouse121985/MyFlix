@@ -51,10 +51,6 @@ let topTenMovies = [
 ]
 app.use(morgan('combined', {stream: accessLogStream}));
 app.use(express.static('public'));
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something Broke!');
-});
 
 app.get('/movies', (req, res) => {
     res.json(topTenMovies);
@@ -62,6 +58,11 @@ app.get('/movies', (req, res) => {
 
 app.get('/', (req, res) => {
     res.send('Welcome to Movie Flix')
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something Broke!');
 });
 
 app.listen(8080, () => {
