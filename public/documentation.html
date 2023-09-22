@@ -21,8 +21,8 @@
       <thead>
         <th>API Functions</th>
         <th>Description</th>
-        <th>Methods</th>
         <th>URL Endpoints</th>
+        <th>Descriptions</th>
       </thead>
       <tbody>
         <tr>
@@ -83,7 +83,7 @@
           <th>Remove a Movie from User's Favorites</th>
           <td class="delete">DELETE</td>
           <!--I Chose movie-ID here since there are several movies with the same title-->
-          <td>/favorites/{movie-id}</td>
+          <td>/username/favorites/{movie-id}</td>
           <td>
             Allow users to remove a movie from their list of favorites (showing
             only a text that a movie has been removed)
@@ -105,7 +105,7 @@
     <h1>Get All Movies <span class="get">GET</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
@@ -137,7 +137,7 @@
     <h1>Get One Movie <span class="get">GET</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
@@ -168,14 +168,14 @@
     <h1>Get a Genre <span class="get">GET</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
             <th>Response Body Data Format</th>
         </thead>
         <tr>
-            <td>Get a Genre</td>
+            <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
             <td>/genres/{genre-title}</td>
             <td>GET</td>
             <td>
@@ -197,7 +197,7 @@
     <h1>Get a Director<span class="get">GET</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
@@ -228,7 +228,7 @@
     <h1>Create a New User <span class="post">POST</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
@@ -264,7 +264,7 @@
     <h1>Update User Info <span class="put">Put</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
@@ -292,7 +292,7 @@
     <h1>Add Movie to User's Favorites <span class="put">PUT</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
@@ -300,7 +300,7 @@
         </thead>
         <tr>
             <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added)</td>
-            <td>/favorites/{movie-id}</td>
+            <td>/username/favorites/{movie-id}</td>
             <td>PUT</td>
             <td>
                 A JSON Object containing the movie to be added to the user's favorite list
@@ -318,7 +318,7 @@
     <h1>Remove a Movie from User's Favorites <span class="delete">DELETE</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
@@ -326,7 +326,7 @@
         </thead>
         <tr>
             <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed)</td>
-            <td>/favorites/{movie-id}</td>
+            <td>/username/favorites/{movie-id}</td>
             <td>DELETE</td>
             <td>
                 None
@@ -344,7 +344,7 @@
     <h1>Delete User <span class="delete">DELETE</span></h1>
     <table class="endpoint-table">
         <thead>
-            <th>Business Logic</th>
+            <th>Description</th>
             <th>URL</th>
             <th>HTTP Method</th>
             <th>Request Body Data Format</th>
