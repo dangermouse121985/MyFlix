@@ -288,11 +288,11 @@
           <th class="response">Response Body Data Format</th>
         </thead>
         <tr>
-          <td>Allow users to update their user info (username)</td>
+          <td>Allow users to update their user info (username).</td>
           <td>/users/{username}</td>
           <td>Put</td>
           <td>
-            A JSON object containing the user's new Username to add <br />
+            A JSON object containing the user's new Username to add. <br />
             {<br />
             <div class="api-body">
               <span class="object-key">username:</span> "JohnDoe123"<br />
@@ -300,7 +300,7 @@
             }
           </td>
           <td>
-            A JSON Object containing the user's new Username that was added <br>
+            A JSON Object containing the user's new Username that was added. <br>
             {<br />
             <div class="api-body">
               <span class="object-key">username:</span> "JohnDoe123"<br />
@@ -322,13 +322,13 @@
         <tr>
           <td>
             Allow users to add a movie to their list of favorites (showing only
-            a text that a movie has been added)
+            a text that a movie has been added).
           </td>
           <td>/username/favorites/{movie-id}</td>
           <td>PUT</td>
           <td>
             A JSON Object containing the movie to be added to the user's
-            favorite list <br />
+            favorite list. <br />
             {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234, <br />
@@ -340,7 +340,7 @@
           </td>
           <td>
             A JSON Object containing the movie that was added to the user's
-            favorite list <br />
+            favorite list. <br />
             {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234, <br />
@@ -367,20 +367,13 @@
         <tr>
           <td>
             Allow users to remove a movie from their list of favorites (showing
-            only a text that a movie has been removed)
+            only a text that a movie has been removed).
           </td>
           <td>/username/favorites/{movie-id}</td>
           <td>DELETE</td>
           <td>None</td>
           <td>
-            JSON Object containing favorite move that was removed from user's
-            list <br />
-            {<br />
-            <div class="api-body">
-              <span class="object-key">movie-id:</span> 1234,<br />
-              <span class="object-key">movie title:</span> "Batman Begins"<br />
-            </div>
-            }
+            Text message indicating movie was removed from user's favorites list.
           </td>
         </tr>
       </table>
@@ -397,18 +390,13 @@
         <tr>
           <td>
             Allow existing users to deregister (showing only a text that a user
-            email has been removed)
+            email has been removed).
           </td>
           <td>/users/{username}</td>
           <td>DELETE</td>
           <td>None</td>
           <td>
-            JSON Object containing Deleted Username <br />
-            {<br />
-                <div class="api-body">
-                    <span class="object-key">username:</span> JohnDoe123 <br />
-        </div>
-            }
+            Text message indicating user was deregistered.
           </td>
         </tr>
       </table>
