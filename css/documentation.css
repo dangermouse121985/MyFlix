@@ -92,3 +92,7 @@ span.delete {
 .response {
     min-width: 180px;
 }
+
+a {
+    color: #fff;
+}

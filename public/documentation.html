@@ -27,13 +27,13 @@
         </thead>
         <tbody>
           <tr>
-            <th>Get All Movies</th>
+            <th><a href="#get-all-movies">Get All Movies</a></th>
             <td class="get">GET</td>
             <td>/movies</td>
             <td>Return a list of ALL movies to the user</td>
           </tr>
           <tr>
-            <th>Get One Movie</th>
+            <th><a href="#get-one-movie">Get One Movie</a></th>
             <td class="get">GET</td>
             <td>/movies/{movie-title}</td>
             <td>
@@ -42,7 +42,7 @@
             </td>
           </tr>
           <tr>
-            <th>Get a Genre</th>
+            <th><a href="#get-a-genre">Get a Genre</a></th>
             <td class="get">GET</td>
             <td>/genres/{genre-title}</td>
             <td>
@@ -51,7 +51,7 @@
             </td>
           </tr>
           <tr>
-            <th>Get a Director</th>
+            <th><a href="#get-a-director">Get a Director</a></th>
             <td class="get">GET</td>
             <td>/directors/{director-name}</td>
             <td>
@@ -59,19 +59,19 @@
             </td>
           </tr>
           <tr>
-            <th>Create a New User</th>
+            <th><a href="#create-a-new-user">Create a New User</a></th>
             <td class="post">POST</td>
             <td>/users</td>
             <td>Allow new users to register</td>
           </tr>
           <tr>
-            <th>Update User Info</th>
+            <th><a href="#update-user-info">Update User Info</a></th>
             <td class="put">PUT</td>
             <td>/users/{username}</td>
             <td>Allow users to update their user info (username)</td>
           </tr>
           <tr>
-            <th>Add Movie to User's Favorites</th>
+            <th><a href="#add-movie-to-favorites">Add Movie to User's Favorites</a></th>
             <td class="put">PUT</td>
             <!--I Chose movie-ID here since there are several movies with the same title-->
             <td>/favorites/movie-id</td>
@@ -81,7 +81,7 @@
             </td>
           </tr>
           <tr>
-            <th>Remove a Movie from User's Favorites</th>
+            <th><a href="#remove-movie-from-favorites">Remove a Movie from User's Favorites</a></th>
             <td class="delete">DELETE</td>
             <!--I Chose movie-ID here since there are several movies with the same title-->
             <td>/username/favorites/{movie-id}</td>
@@ -91,8 +91,7 @@
             </td>
           </tr>
           <tr>
-            <th>Delete User</th>
-
+            <th><a href="#delete-user">Delete User<a</th>
             <td class="delete">DELETE</td>
             <td>/users/{username}</td>
             <td>
@@ -103,7 +102,7 @@
         </tbody>
       </table>
 
-      <h1>Get All Movies <span class="get">GET</span></h1>
+      <h1 id="get-all-movies">Get All Movies <span class="get">GET</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -138,7 +137,7 @@
         </tr>
       </table>
 
-      <h1>Get One Movie <span class="get">GET</span></h1>
+      <h1 id="get-one-movie">Get One Movie <span class="get">GET</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -173,7 +172,7 @@
         </tr>
       </table>
 
-      <h1>Get a Genre <span class="get">GET</span></h1>
+      <h1 id="get-a-genre">Get a Genre <span class="get">GET</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -204,7 +203,7 @@
         </tr>
       </table>
 
-      <h1>Get a Director<span class="get">GET</span></h1>
+      <h1 id="get-a-director">Get a Director<span class="get">GET</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -238,7 +237,7 @@
         </tr>
       </table>
 
-      <h1>Create a New User <span class="post">POST</span></h1>
+      <h1 id="create-a-new-user">Create a New User <span class="post">POST</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -279,7 +278,7 @@
         </tr>
       </table>
 
-      <h1>Update User Info <span class="put">Put</span></h1>
+      <h1 id="update-user-info">Update User Info <span class="put">Put</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -311,7 +310,7 @@
         </tr>
       </table>
 
-      <h1>Add Movie to User's Favorites <span class="put">PUT</span></h1>
+      <h1 id="add-movie-to-favorites">Add Movie to User's Favorites <span class="put">PUT</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -354,7 +353,7 @@
         </tr>
       </table>
 
-      <h1>
+      <h1 id="remove-movie-from-favorites">
         Remove a Movie from User's Favorites <span class="delete">DELETE</span>
       </h1>
       <table class="endpoint-table">
@@ -386,7 +385,7 @@
         </tr>
       </table>
 
-      <h1>Delete User <span class="delete">DELETE</span></h1>
+      <h1 id="delete-user">Delete User <span class="delete">DELETE</span></h1>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
