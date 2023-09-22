@@ -67,6 +67,7 @@ span.post,
 span.put,
 span.delete {
     padding: 0 10px;
+    border-radius: 3px;
 }
 
 .endpoint-table
