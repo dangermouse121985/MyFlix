@@ -9,46 +9,77 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 
 let moviesDB = [
     {
+        id: 1,
         title: 'The Godfather',
-        Director: 'Francis Ford Coppola'
+        url: "/movies/The%20Godfather"
     },
     {
+        id: 2,
         title: 'The Godfather Part II',
-        Director: 'Francis Ford Coppola'
+        url: '/movies/the%20Godfather%20Part%II'
     },
     {
-        title: 'Schindler\' List',
-        Director: 'Steven Spielberg'
+        id: 3,
+        title: 'Schindler\'s List',
+        url: '/movies/schindlers%20list'
     },
     {
+        id: 4,
         title: 'The Dark Knight',
-        Director: 'Christopher Nolan'
+        url: '/movies/the%20dark%20knight'
     },
     {
+        id: 5,
         title: 'Forest Gump',
-        Director: 'Robert Zemeckis'
+        url: '/movies/forest%20gump'
     },
     {
+        id: 6,
         title: 'Pulp Fiction',
-        Director: 'Quentin Tarantino'
+        url: '/movies/pulp%20fiction'
     },
     {
+        id: 7,
         title: 'The Shawshank Redemption',
-        Director: 'Frank Darabont'
+        url: '/movies/the%20shawshank%20redemption'
     },
     {
+        id: 8,
         title: 'Inception',
-        Director: 'Christopher Nolan'
+        url: '/movies/inception'
     },
     {
+        id: 9,
         title: 'The Lion King',
-        Director: 'Rob Minkoff'
+        url: '/movies/the%20kion%20king'
     },
     {
+        id: 10,
         title: 'Black Panther',
-        Director: 'Ryan Coogler'
+        url: '/movies/black%20panther'
     }
 ]
+
+let movieDetails = [
+    {
+        id: 1,
+        title: 'The Godfather',
+        director: 'Christopher Nolan',
+        genre: 'Action/Fantasy',
+        releaseYear: 2005,
+        imageUrl: 'https://image.com/image.png',
+        featured: true
+    },
+    {
+        id: 1235,
+        title: 'The Dark Knight',
+        director: 'Christopher Nolan',
+        genre: 'Action/Fantasy',
+        releaseYear: 2005,
+        imageUrl: 'https://image.com/image.png',
+        featured: true
+    }
+];
 
 let genres = [
     {
@@ -73,7 +104,7 @@ app.get('/movies', (req, res) => {
 });
 
 app.get('/movies/:title', (req, res) => {
-    res.json(moviesDB.find((movie) => 
+    res.json(movieDetails.find((movie) => 
     { return movie.title === req.params.title }));
 });
 
@@ -95,7 +126,7 @@ app.put('/users/:username', (req, res) => {
     res.send('Successful PUT request upadating user\'s username');
 });
 
-app.put('/users/:username/favorites/:movieId', (req, res) => {
+app.put('/users/:username/favorites/:movie-id', (req, res) => {
     res.send('Successful PUT request adding movie to user\'s favorites list');
 });
 

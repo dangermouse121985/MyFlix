@@ -78,3 +78,17 @@ span.delete {
 .endpoint-table thead th {
     width: 20%;
 }
+
+.api-body {
+    color: #ffa500;
+    padding-left: 20px;
+    word-break: break-word;
+}
+
+.object-key {
+    color: #008000;
+}
+
+.response {
+    min-width: 180px;
+}

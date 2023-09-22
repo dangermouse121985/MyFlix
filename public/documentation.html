@@ -8,364 +8,411 @@
   </head>
   <body>
     <main>
-        <h1>My Flix Documentation</h1>
-    <h2>Objective</h2>
-    <div>
-      To build the server-side component of a “movies” web application. The web
-      application will provide users with access to information about different
-      movies, directors, and genres. Users will be able to sign up, update their
-      personal information, and create a list of their favorite movies.
-    </div>
+      <h1>My Flix Documentation</h1>
+      <h2>Objective</h2>
+      <div>
+        To build the server-side component of a “movies” web application. The
+        web application will provide users with access to information about
+        different movies, directors, and genres. Users will be able to sign up,
+        update their personal information, and create a list of their favorite
+        movies.
+      </div>
 
-    <table>
-      <thead>
-        <th>API Functions</th>
-        <th>Description</th>
-        <th>URL Endpoints</th>
-        <th>Descriptions</th>
-      </thead>
-      <tbody>
+      <table>
+        <thead>
+          <th>API Functions</th>
+          <th>Description</th>
+          <th>URL Endpoints</th>
+          <th>Descriptions</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Get All Movies</th>
+            <td class="get">GET</td>
+            <td>/movies</td>
+            <td>Return a list of ALL movies to the user</td>
+          </tr>
+          <tr>
+            <th>Get One Movie</th>
+            <td class="get">GET</td>
+            <td>/movies/{movie-title}</td>
+            <td>
+              Return data (description, genre, director, image URL, whether it’s
+              featured or not) about a single movie by title to the user
+            </td>
+          </tr>
+          <tr>
+            <th>Get a Genre</th>
+            <td class="get">GET</td>
+            <td>/genres/{genre-title}</td>
+            <td>
+              Return data about a genre (description) by name/title (e.g.,
+              “Thriller”)
+            </td>
+          </tr>
+          <tr>
+            <th>Get a Director</th>
+            <td class="get">GET</td>
+            <td>/directors/{director-name}</td>
+            <td>
+              Return data about a director (bio, birth year, death year) by name
+            </td>
+          </tr>
+          <tr>
+            <th>Create a New User</th>
+            <td class="post">POST</td>
+            <td>/users</td>
+            <td>Allow new users to register</td>
+          </tr>
+          <tr>
+            <th>Update User Info</th>
+            <td class="put">PUT</td>
+            <td>/users/{username}</td>
+            <td>Allow users to update their user info (username)</td>
+          </tr>
+          <tr>
+            <th>Add Movie to User's Favorites</th>
+            <td class="put">PUT</td>
+            <!--I Chose movie-ID here since there are several movies with the same title-->
+            <td>/favorites/movie-id</td>
+            <td>
+              Allow users to add a movie to their list of favorites (showing
+              only a text that a movie has been added)
+            </td>
+          </tr>
+          <tr>
+            <th>Remove a Movie from User's Favorites</th>
+            <td class="delete">DELETE</td>
+            <!--I Chose movie-ID here since there are several movies with the same title-->
+            <td>/username/favorites/{movie-id}</td>
+            <td>
+              Allow users to remove a movie from their list of favorites
+              (showing only a text that a movie has been removed)
+            </td>
+          </tr>
+          <tr>
+            <th>Delete User</th>
+
+            <td class="delete">DELETE</td>
+            <td>/users/{username}</td>
+            <td>
+              Allow existing users to deregister (showing only a text that a
+              user email has been removed)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h1>Get All Movies <span class="get">GET</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
         <tr>
-          <th>Get All Movies</th>
-          <td class="get">GET</td>
-          <td>/movies</td>
           <td>Return a list of ALL movies to the user</td>
-        </tr>
-        <tr>
-          <th>Get One Movie</th>
-          <td class="get">GET</td>
-          <td>/movies/{movie-title}</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
           <td>
-            Return data (description, genre, director, image URL, whether it’s
-            featured or not) about a single movie by title to the user
+            A JSON object holidng data about all the movies <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1234,<br />
+              <span class="object-key">title:</span> "Batman Begins",<br />
+              <span class="object-key">url:</span>
+              "/movies/Batman%20Begins",<br />
+            </div>
+            }, {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1235,<br />
+              <span class="object-key">title:</span> "The Dark Knight",<br />
+              <span class="object-key">url:</span>
+              "/moview/Batman%20Begins",<br />
+            </div>
+            }
           </td>
         </tr>
+      </table>
+
+      <h1>Get One Movie <span class="get">GET</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
         <tr>
-          <th>Get a Genre</th>
-          <td class="get">GET</td>
-          <td>/genres/{genre-title}</td>
+          <td>
+            Return data (description, genre, director, image URL, whether it’s
+            featured or not) about a single movie by title to the userv
+          </td>
+          <td>/movies/{movie-title}</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holidng data about a single movies <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1234,<br />
+              <span class="object-key">title:</span> "Batman Begins",<br />
+              <span class="object-key">director:</span> "Christopher Nolan",<br />
+              <span class="object-key">genre:</span> "Action/Fantasy",<br />
+              <span class="object-key">releaseYear:</span> 2005,<br />
+              <span class="object-key">imageUrl:</span>
+              "https://image.com/image.png",<br />
+              <span class="object-key">featured:</span> true <br />
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
+      <h1>Get a Genre <span class="get">GET</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
           <td>
             Return data about a genre (description) by name/title (e.g.,
             “Thriller”)
           </td>
+          <td>/genres/{genre-title}</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holidng data about a single genre <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">title:</span> "Action",<br />
+              <span class="object-key">description:</span> "Action film is a
+              film genre in which the protagonist is thrust into a series of
+              events that typically involve violence and physical feats." <br />
+            </div>
+            }
+          </td>
         </tr>
+      </table>
+
+      <h1>Get a Director<span class="get">GET</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
         <tr>
-          <th>Get a Director</th>
-          <td class="get">GET</td>
-          <td>/directors/{director-name}</td>
           <td>
             Return data about a director (bio, birth year, death year) by name
           </td>
+          <td>/directors/{director-name}</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holidng data about a single director <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">name:</span> "Christopher Nolan",<br />
+              <span class="object-key">bio:</span> "Christopher Edward Nolan CBE
+              is a British and American filmmaker. Known for his Hollywood
+              blockbusters with complex storytelling, Nolan is considered a
+              leading filmmaker of the 21st century. His films have grossed $5
+              billion worldwide.",<br />
+              <span class="object-key">birthYear:</span> 1970,<br />
+              <span class="object-key">deathYear:</span> null <br />
+            </div>
+            }
+          </td>
         </tr>
+      </table>
+
+      <h1>Create a New User <span class="post">POST</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
         <tr>
-          <th>Create a New User</th>
-          <td class="post">POST</td>
+          <td>Allow New Users to register</td>
           <td>/users</td>
-          <td>Allow new users to register</td>
+          <td>POST</td>
+          <td>
+            A Json object holding data about the user to add, structure like:
+            <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">first name:</span> "John ",<br />
+              <span class="object-key">last name:</span> "Doe",<br />
+              <span class="object-key">username:</span> "jdoe123",<br />
+              <span class="object-key">password:</span> password <br />
+            </div>
+            }
+          </td>
+          <td>
+            A Json object holding data about the user that was added, including
+            an id:
+            <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1234,<br />
+              <span class="object-key">first name:</span> "John ",<br />
+              <span class="object-key">last name:</span> "Doe",<br />
+              <span class="object-key">username:</span> "jdoe123"<br />
+            </div>
+            }
+          </td>
         </tr>
+      </table>
+
+      <h1>Update User Info <span class="put">Put</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
         <tr>
-          <th>Update User Info</th>
-          <td class="put">PUT</td>
-          <td>/users/{username}</td>
           <td>Allow users to update their user info (username)</td>
+          <td>/users/{username}</td>
+          <td>Put</td>
+          <td>
+            A JSON object containing the user's new Username to add <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">username:</span> "JohnDoe123"<br />
+            </div>
+            }
+          </td>
+          <td>
+            A JSON Object containing the user's new Username that was added <br>
+            {<br />
+            <div class="api-body">
+              <span class="object-key">username:</span> "JohnDoe123"<br />
+            </div>
+            }
+          </td>
         </tr>
+      </table>
+
+      <h1>Add Movie to User's Favorites <span class="put">PUT</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
         <tr>
-          <th>Add Movie to User's Favorites</th>
-          <td class="put">PUT</td>
-          <!--I Chose movie-ID here since there are several movies with the same title-->
-          <td>/favorites/movie-id</td>
           <td>
             Allow users to add a movie to their list of favorites (showing only
             a text that a movie has been added)
           </td>
-        </tr>
-        <tr>
-          <th>Remove a Movie from User's Favorites</th>
-          <td class="delete">DELETE</td>
-          <!--I Chose movie-ID here since there are several movies with the same title-->
           <td>/username/favorites/{movie-id}</td>
+          <td>PUT</td>
+          <td>
+            A JSON Object containing the movie to be added to the user's
+            favorite list <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1234, <br />
+              <span class="object-key">title:</span> "Batman Begins",<br />
+              <span class="object-key">url:</span>
+              "movies/batman%20begins"<br />
+            </div>
+            }
+          </td>
+          <td>
+            A JSON Object containing the movie that was added to the user's
+            favorite list <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1234, <br />
+              <span class="object-key">title:</span> "Batman Begins",<br />
+              <span class="object-key">url:</span>
+              "movies/batman%20begins"<br />
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
+      <h1>
+        Remove a Movie from User's Favorites <span class="delete">DELETE</span>
+      </h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
           <td>
             Allow users to remove a movie from their list of favorites (showing
             only a text that a movie has been removed)
           </td>
+          <td>/username/favorites/{movie-id}</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>
+            JSON Object containing favorite move that was removed from user's
+            list <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">movie-id:</span> 1234,<br />
+              <span class="object-key">movie title:</span> "Batman Begins"<br />
+            </div>
+            }
+          </td>
         </tr>
-        <tr>
-          <th>Delete User</th>
+      </table>
 
-          <td class="delete">DELETE</td>
-          <td>/users/{username}</td>
+      <h1>Delete User <span class="delete">DELETE</span></h1>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
           <td>
             Allow existing users to deregister (showing only a text that a user
             email has been removed)
           </td>
+          <td>/users/{username}</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>
+            JSON Object containing Deleted Username <br />
+            {<br />
+                <div class="api-body">
+                    <span class="object-key">username:</span> JohnDoe123 <br />
+        </div>
+            }
+          </td>
         </tr>
-      </tbody>
-    </table>
-
-    <h1>Get All Movies <span class="get">GET</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Return a list of ALL movies to the user</td>
-            <td>/movies</td>
-            <td>GET</td>
-            <td>
-                None
-            </td>
-            <td>
-                A JSON object holidng data about all the movies <br>
-                {<br>
-                    movieId: 1234,<br>
-                    movieTitle: "Batman Begins",<br>
-                    url: "/movies/Batman%20Begins",<br>
-                },
-                {<br>
-                    movieId: 1235,<br>
-                    movieTitle: "The Dark Knight",<br>
-                    url: "/moview/Batman%20Begins",<br>
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Get One Movie <span class="get">GET</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the userv</td>
-            <td>/movies/{movie-title}</td>
-            <td>GET</td>
-            <td>
-                None
-            </td>
-            <td>
-                A JSON object holidng data about a single movies <br>
-                {<br>
-                    movieId: 1234,<br>
-                    movieTitle: "Batman Begins",<br>
-                    director: "Christopher Nolan",<br>
-                    genre: "Action/Fantasy",<br>
-                    releaseYear: 2005,<br>
-                    imageUrl: "https://image.com/image.png",<br>
-                    featured: true <br>
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Get a Genre <span class="get">GET</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-            <td>/genres/{genre-title}</td>
-            <td>GET</td>
-            <td>
-                None
-            </td>
-            <td>
-                A JSON object holidng data about a single genre <br>
-                {<br>
-                    title: "Action",<br>
-                    description: "Action film is a film genre 
-                        in which the protagonist is thrust into 
-                        a series of events that typically involve 
-                        violence and physical feats." <br>
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Get a Director<span class="get">GET</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Return data about a director (bio, birth year, death year) by name</td>
-            <td>/directors/{director-name}</td>
-            <td>GET</td>
-            <td>
-                None
-            </td>
-            <td>
-                A JSON object holidng data about a single director <br>
-                {<br>
-                    name: "Christopher Nolan",<br>
-                    bio: "Christopher Edward Nolan CBE is a British and American filmmaker. 
-                    Known for his Hollywood blockbusters with complex storytelling, Nolan 
-                    is considered a leading filmmaker of the 21st century. His films have 
-                    grossed $5 billion worldwide.",<br>
-                    birthYear: 1970,<br>
-                    deathYear:,
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Create a New User <span class="post">POST</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Allow New Users to register</td>
-            <td>/users</td>
-            <td>POST</td>
-            <td>
-                A Json object holding data about the user to add, structure like:
-                <br>
-                {<br>
-                    first name: "John ",<br>
-                    last name: "Doe",<br>
-                    username: "jdoe123",<br>
-                    password: password <br>
-                }
-            </td>
-            <td>
-                A Json object holding data about the user that was added, including an id:
-                <br>
-                {<br>
-                    id: 1234,<br>
-                    first name: "John ",<br>
-                    last name: "Doe",<br>
-                    username: "jdoe123"<br>
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Update User Info <span class="put">Put</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Allow users to update their user info (username)</td>
-            <td>/users/{username}</td>
-            <td>Put</td>
-            <td>
-                A JSON object containing the user's new Username to add <br>
-                {<br>
-                    username: "JohnDoe123"<br>
-                }
-            </td>
-            <td>
-                A JSON Object containing the user's new Username that was added br
-                {<br>
-                    username: "JohnDoe123"<br>
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Add Movie to User's Favorites <span class="put">PUT</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added)</td>
-            <td>/username/favorites/{movie-id}</td>
-            <td>PUT</td>
-            <td>
-                A JSON Object containing the movie to be added to the user's favorite list
-            </td>
-            <td>
-                A JSON Object containing the movie that was added to the user's favorite list
-                {<br>
-                    movieId: 1234, <br>
-                    movieTitle: "Batman Begins"<br>
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Remove a Movie from User's Favorites <span class="delete">DELETE</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed)</td>
-            <td>/username/favorites/{movie-id}</td>
-            <td>DELETE</td>
-            <td>
-                None
-            </td>
-            <td>
-                JSON Object containing favorite move that was removed from user's list <br>
-                {<br>
-                    movie-id: 1234,<br>
-                    movie title: "Batman Begins"<br>
-                }
-            </td>
-        </tr>
-    </table>
-
-    <h1>Delete User <span class="delete">DELETE</span></h1>
-    <table class="endpoint-table">
-        <thead>
-            <th>Description</th>
-            <th>URL</th>
-            <th>HTTP Method</th>
-            <th>Request Body Data Format</th>
-            <th>Response Body Data Format</th>
-        </thead>
-        <tr>
-            <td>Allow existing users to deregister (showing only a text that a user email has been removed)</td>
-            <td>/users/{username}</td>
-            <td>DELETE</td>
-            <td>
-                None
-            </td>
-            <td>
-                JSON Object containing Deleted Username <br>
-                {<br>
-                    username:JohnDoe123 <br>
-                }
-            </td>
-        </tr>
-    </table>
-
+      </table>
     </main>
   </body>
 </html>
