@@ -7,7 +7,7 @@ const app = express();
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
-let topTenMovies = [
+let moviesDB = [
     {
         title: 'The Godfather',
         Director: 'Francis Ford Coppola'
@@ -49,11 +49,46 @@ let topTenMovies = [
         Director: 'Ryan Coogler'
     }
 ]
+
+let genres = [];
+let directors = [];
+
 app.use(morgan('combined', {stream: accessLogStream}));
 app.use(express.static('public'));
 
 app.get('/movies', (req, res) => {
-    res.json(topTenMovies);
+    res.json(moviesDB);
+});
+
+app.get('/movies/:title', (req, res) => {
+    res.json(moviesDB.find((movie) => 
+    { return movie.title === req.params.title }));
+});
+
+app.get('/genre/:title', (req, res) => {
+    res.json(genres.find((genre) => 
+    { return genre.title === req.params.title }));
+});
+
+app.get('/directors/:name', (req, res) => {
+    res.json(directors.find((director) => 
+    { return director.name === req.params.name }));
+});
+
+app.post('/users', (reg,res) => {
+    res.send('Successful POST request, creating new user');
+});
+
+app.put('/users/:username', (req, res) => {
+    res.send('Successful PUT request upadating user\' username');
+});
+
+app.delete('/favorites/:movie-id', (req, res) => {
+    res.send('Successful DELETE request removeing movie from user\'s favorites movie list');
+});
+
+app.delete('/users/:username', (req, res) => {
+    res.send('successful DELETE request removing user from list of users');
 });
 
 app.get('/', (req, res) => {

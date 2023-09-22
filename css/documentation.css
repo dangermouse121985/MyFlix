@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+:root {
+    --primary-color: #092947;
+    --secondary-color: #0D3B66;
+    --font-color--white: #fff;
+}
+
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+main {
+    padding: 0 100px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 100%;
+}
+
+thead tr th {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: left;
+}
+
+tr th {
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-align: left;
+}
+
+tr {
+    border: 1px solid var(--secondary-color);
+}
+
+th, td {
+    padding: 10px 30px 10px 10px ;
+}
+
+.get,
+.put,
+.post,
+.delete {
+    color: var(--font-color--white);
+}
+
+.get {
+    background-color: #008000;
+}
+
+.put {
+    background-color: #ffa500;
+}
+
+.post {
+    background-color: #092947;
+}
+
+.delete {
+    background-color: #ff0000;
+}
+
+span.get,
+span.post,
+span.put,
+span.delete {
+    padding: 0 10px;
+}
+
+.endpoint-table
+ {
+    width: 100%;
+}
+
+.endpoint-table tr td,
+.endpoint-table thead th {
+    width: 20%;
+}
