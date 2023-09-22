@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/documentation.css" />
-    <title>My Flix Documentation</title>
+    <title>My Flix API Documentation</title>
   </head>
   <body>
     <main>
-      <h1>My Flix Documentation</h1>
+      <h1>My Flix API Documentation</h1>
       <h2>Objective</h2>
       <div>
         To build the server-side component of a “movies” web application. The
@@ -74,7 +74,7 @@
             <th><a href="#add-movie-to-favorites">Add Movie to User's Favorites</a></th>
             <td class="put">PUT</td>
             <!--I Chose movie-ID here since there are several movies with the same title-->
-            <td>/favorites/movie-id</td>
+            <td>/users/{username}/favorites/movie-id</td>
             <td>
               Allow users to add a movie to their list of favorites (showing
               only a text that a movie has been added)
@@ -84,7 +84,7 @@
             <th><a href="#remove-movie-from-favorites">Remove a Movie from User's Favorites</a></th>
             <td class="delete">DELETE</td>
             <!--I Chose movie-ID here since there are several movies with the same title-->
-            <td>/username/favorites/{movie-id}</td>
+            <td>/users/{username}/favorites/{movie-id}</td>
             <td>
               Allow users to remove a movie from their list of favorites
               (showing only a text that a movie has been removed)
@@ -118,7 +118,7 @@
           <td>None</td>
           <td>
             A JSON object holidng data about all the movies <br />
-            {<br />
+            [{<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
               <span class="object-key">title:</span> "Batman Begins",<br />
@@ -132,7 +132,7 @@
               <span class="object-key">url:</span>
               "/moview/Batman%20Begins",<br />
             </div>
-            }
+            }]
           </td>
         </tr>
       </table>
@@ -324,7 +324,7 @@
             Allow users to add a movie to their list of favorites (showing only
             a text that a movie has been added).
           </td>
-          <td>/username/favorites/{movie-id}</td>
+          <td>/users/{username}/favorites/{movie-id}</td>
           <td>PUT</td>
           <td>
             A JSON Object containing the movie to be added to the user's
@@ -369,7 +369,7 @@
             Allow users to remove a movie from their list of favorites (showing
             only a text that a movie has been removed).
           </td>
-          <td>/username/favorites/{movie-id}</td>
+          <td>/users/{username}/favorites/{movie-id}</td>
           <td>DELETE</td>
           <td>None</td>
           <td>
