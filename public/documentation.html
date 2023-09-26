@@ -59,6 +59,14 @@
             </td>
           </tr>
           <tr>
+            <th><a href="#get-an-actor">Get an Actor</a></th>
+            <td class="get">GET</td>
+            <td>/actors/{actor-name}</td>
+            <td>
+              Return data about an actor (bio, birth year, death year) by name
+            </td>
+          </tr>
+          <tr>
             <th><a href="#create-a-new-user">Create a New User</a></th>
             <td class="post">POST</td>
             <td>/users</td>
@@ -230,6 +238,39 @@
               leading filmmaker of the 21st century. His films have grossed $5
               billion worldwide.",<br />
               <span class="object-key">birthYear:</span> 1970,<br />
+              <span class="object-key">deathYear:</span> null <br />
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
+      <h2 id="get-an-actor">Get an Actor <span class="get">GET</span></h2>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
+          <td>
+            Return data about an actor (bio, birth year, death year) by name
+          </td>
+          <td>/actors/{actor-name}</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holidng data about a single director <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">name:</span> "Christian Bale",<br />
+              <span class="object-key">bio:</span> "Christian Charles Philip Bale is an English actor.
+              Known for his versatility and physical transformations for his roles, he has been a 
+              leading man in films of several genres. He has received various accolades, including an 
+              Academy Award and two Golden Globe Awards.",<br />
+              <span class="object-key">birthYear:</span> 1974,<br />
               <span class="object-key">deathYear:</span> null <br />
             </div>
             }

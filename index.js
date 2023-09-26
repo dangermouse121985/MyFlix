@@ -1,141 +1,213 @@
 const express = require('express'),
     fs = require('fs'),
     morgan = require('morgan'),
-    path = require('path');
+    path = require('path'),
+    mongoose = require('mongoose'),
+    Models = require('./models.js'),
+    bodyParser = require('body-parser');
+
+const Movies = Models.Movie;
+const Users = Models.User;
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+mongoose.connect('mongodb://localhost:27017/movieflixdb', { useNewUrlParser: true, useUnifiedTopology: true});
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
-
-let moviesDB = [
-    {
-        id: 1,
-        title: 'The Godfather',
-        url: "/movies/The%20Godfather"
-    },
-    {
-        id: 2,
-        title: 'The Godfather Part II',
-        url: '/movies/the%20Godfather%20Part%II'
-    },
-    {
-        id: 3,
-        title: 'Schindler\'s List',
-        url: '/movies/schindlers%20list'
-    },
-    {
-        id: 4,
-        title: 'The Dark Knight',
-        url: '/movies/the%20dark%20knight'
-    },
-    {
-        id: 5,
-        title: 'Forest Gump',
-        url: '/movies/forest%20gump'
-    },
-    {
-        id: 6,
-        title: 'Pulp Fiction',
-        url: '/movies/pulp%20fiction'
-    },
-    {
-        id: 7,
-        title: 'The Shawshank Redemption',
-        url: '/movies/the%20shawshank%20redemption'
-    },
-    {
-        id: 8,
-        title: 'Inception',
-        url: '/movies/inception'
-    },
-    {
-        id: 9,
-        title: 'The Lion King',
-        url: '/movies/the%20kion%20king'
-    },
-    {
-        id: 10,
-        title: 'Black Panther',
-        url: '/movies/black%20panther'
-    }
-]
-
-let movieDetails = [
-    {
-        id: 1,
-        title: 'The Godfather',
-        director: 'Christopher Nolan',
-        genre: 'Action/Fantasy',
-        releaseYear: 2005,
-        imageUrl: 'https://image.com/image.png',
-        featured: true
-    },
-    {
-        id: 1235,
-        title: 'The Dark Knight',
-        director: 'Christopher Nolan',
-        genre: 'Action/Fantasy',
-        releaseYear: 2005,
-        imageUrl: 'https://image.com/image.png',
-        featured: true
-    }
-];
-
-let genres = [
-    {
-        title: 'action',
-        description: 'Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.'
-    }
-];
-let directors = [
-    {
-        name: "Christopher Nolan",
-        bio: "Christopher Edward Nolan CBE is a British and American filmmaker. Known for his Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century. His films have grossed $5 billion worldwide.",
-        birthYear: 1970,
-        deathYear: null
-    }
-];
 
 app.use(morgan('combined', {stream: accessLogStream}));
 app.use(express.static('public'));
 
-app.get('/movies', (req, res) => {
-    res.json(moviesDB);
+app.get('/movies', async (req, res) => {
+    await Movies.find()
+        .then ((movies) => {
+            res.json(movies);
+        })
+        .catch ((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
-app.get('/movies/:title', (req, res) => {
-    res.json(movieDetails.find((movie) => 
-    { return movie.title === req.params.title }));
+app.get('/movies/:title', async (req, res) => {
+    await Movies.findOne({ title: req.params.title })
+        .then ((movie) => {
+            res.json(movie);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
-app.get('/genres/:title', (req, res) => {
-    res.json(genres.find((genre) => 
-    { return genre.title === req.params.title }));
+app.get('/genres', async (req, res) => {
+    await Movies.distinct("genre")
+        .then ((movies) => {
+            res.json(movies);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
-app.get('/directors/:name', (req, res) => {
-    res.json(directors.find((director) => 
-    { return director.name === req.params.name }));
+//Returning ID of Movie Object instead of genre document. Need to figure out why
+app.get('/genres/:name', async (req, res) => {
+    await Movies.find({"genre.name": req.params.name},{"genre.name": 1, "genre.description": 1})
+        .then ((movies) => {
+            res.json(movies);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
-app.post('/users', (reg,res) => {
-    res.send('Successful POST request, creating new user');
+app.get('/directors', async (req, res) => {
+    await Movies.distinct("director")
+        .then((movies) => {
+            res.json(movies);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
-app.put('/users/:username', (req, res) => {
-    res.send('Successful PUT request upadating user\'s username');
+app.get('/directors/:name', async (req, res) => {
+    await Movies.findOne({"director.name": req.params.name},{"director": 1})
+        .then ((movies) => {
+            res.json(movies);
+        })
+        .catch ((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
-app.put('/users/:username/favorites/:movie-id', (req, res) => {
-    res.send('Successful PUT request adding movie to user\'s favorites list');
+app.get('/users', async (req, res) => {
+    await Users.find()
+        .then ((users) => {
+            res.status(201).json(users);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
-app.delete('/users/:username/favorites/:movie-id', (req, res) => {
-    res.send('Successful DELETE request removing movie from user\'s favorites movie list');
+app.get('/users/:username', async (req, res) => {
+    await Users.findOne({ username: req.params.username })
+        .then((user) => {
+            res.json(user);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
-app.delete('/users/:username', (req, res) => {
-    res.send('successful DELETE request removing user from list of users');
+app.post('/users', async(req, res) => {
+    await Users.findOne({ username: req.body.username})
+        .then((user) => {
+            if (user) {
+                return res.status(400).send(req.body.username + ' already exists');
+            } else {
+                Users
+                    .create({
+                        username: req.body.username,
+                        password: req.body.password,
+                        first_name: req.body.first_name,
+                        last_name: req.body.last_name,
+                        email: req.body.email,
+                        birth: req.body.birth
+                    })
+                    .then((user) => { res.status(201).json(user) })
+                .catch((error) => {
+                    console.error(error);
+                    res.status(500).send('Error: ' + error);
+                })
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+        });
+});
+
+//Update a user's info, by username
+/* We'll expect JSON in this format
+{
+    username: String, (required)
+    password: String, (required)
+    email: String, (required)
+    birth: Date
+}*/
+app.put('/users/:username', async (req, res) => {
+    await Users.findOneAndUpdate({username: req.params.username},{ $set:
+        {
+            username: req.body.username,
+            password: req.body.password,
+            first_name: req.body.first_name,
+            last_name: req.params.last_name,
+            email: req.body.email,
+            birth: req.params.birth
+        }
+    },
+    {new: true}) //this line makes sure that the update document is returned
+    .then((updatedUser) => {
+        res.json(updatedUser);
+    })
+    .catch ((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+    })
+});
+
+//Used $addToSet instead of $push to prevent duplicates from being added to the array
+app.put('/users/:username/favorites/:movieID', async (req, res) => {
+    await Users.findOneAndUpdate({ username: req.params.username},{
+        $addToSet: { favorites: new mongoose.Types.ObjectId(req.params.movieID)}
+    },
+    { new: true}) //this line makes sure that the update document is returned true
+    .then((updatedUser) => {
+        console.log(new mongoose.Types.ObjectId(req.params.movieID));
+        res.json(updatedUser);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+    });
+});
+
+app.delete('/users/:username/favorites/:movieID', async (req, res) => {
+    await Users.findOneAndUpdate({ username: req.params.username },{
+        $pull: { favorites: new mongoose.Types.ObjectId(req.params.movieID) }
+    },
+    { new: true}) //this line makes sure that the update document is returned true
+    .then((updatedUser) => {
+        res.json(updatedUser);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+    });
+});
+
+app.delete('/users/:username', async (req, res) => {
+    await Users.findOneAndRemove({ username: req.params.username})
+    .then((user) => {
+        if (!user) {
+            res.status(400).send(req.params.username + " was not found.");
+        } else {
+            res.status(200).send(req.params.username + " was deleted.");
+        }
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err)
+    });
 });
 
 app.get('/', (req, res) => {
