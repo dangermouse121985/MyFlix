@@ -93,7 +93,7 @@ app.get('/directors/:name', async (req, res) => {
 
 /* Return All Actors */
 app.get('/actors', async (req, res) => {
-    await Movies.distinct("actor")
+    await Movies.distinct("actors")
         .then((movies) => {
             res.json(movies);
         })
@@ -104,8 +104,9 @@ app.get('/actors', async (req, res) => {
 });
 
 /* Return a Director by Name */
+/* I am unsure how to resolve this one. Currently it returns the full array of actors that the actor belongs to */
 app.get('/actors/:name', async (req, res) => {
-    await Movies.findOne({"actors.name": req.params.name},{"actors": 1})
+    await Movies.findOne({"actors.name": req.params.name},"actors.$")
         .then ((movies) => {
             res.json(movies);
         })
