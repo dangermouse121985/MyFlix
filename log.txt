@@ -269,3 +269,4 @@
 ::1 - - [27/Sep/2023:02:49:42 +0000] "GET /actors/Mark%20Hamill HTTP/1.1" 200 639 "-" "PostmanRuntime/7.33.0"
 ::1 - - [27/Sep/2023:02:50:19 +0000] "GET /actors/Mark%20Hamill HTTP/1.1" 200 1281 "-" "PostmanRuntime/7.33.0"
 ::1 - - [27/Sep/2023:02:51:00 +0000] "GET /actors/Mark%20Hamill HTTP/1.1" 200 1281 "-" "PostmanRuntime/7.33.0"
+::1 - - [27/Sep/2023:02:53:25 +0000] "GET /actors HTTP/1.1" 200 14619 "-" "PostmanRuntime/7.33.0"
