@@ -19,6 +19,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 app.use(morgan('combined', {stream: accessLogStream}));
 app.use(express.static('public'));
 
+/* Return All Movies */
 app.get('/movies', async (req, res) => {
     await Movies.find()
         .then ((movies) => {
@@ -30,6 +31,7 @@ app.get('/movies', async (req, res) => {
         });
 });
 
+/* Return A Movie By its Title */
 app.get('/movies/:title', async (req, res) => {
     await Movies.findOne({ title: req.params.title })
         .then ((movie) => {
@@ -41,6 +43,7 @@ app.get('/movies/:title', async (req, res) => {
         });
 });
 
+/* Return All Genres */
 app.get('/genres', async (req, res) => {
     await Movies.distinct("genre")
         .then ((movies) => {
@@ -52,7 +55,7 @@ app.get('/genres', async (req, res) => {
         });
 });
 
-//Returning ID of Movie Object instead of genre document. Need to figure out why
+/* Returns A Genre by Name */
 app.get('/genres/:name', async (req, res) => {
     await Movies.find({"genre.name": req.params.name},{"genre.name": 1, "genre.description": 1})
         .then ((movies) => {
@@ -64,6 +67,7 @@ app.get('/genres/:name', async (req, res) => {
         });
 });
 
+/* Return All Directors */
 app.get('/directors', async (req, res) => {
     await Movies.distinct("director")
         .then((movies) => {
@@ -75,6 +79,7 @@ app.get('/directors', async (req, res) => {
         });
 });
 
+/* Return a Director by Name */
 app.get('/directors/:name', async (req, res) => {
     await Movies.findOne({"director.name": req.params.name},{"director": 1})
         .then ((movies) => {
@@ -86,6 +91,31 @@ app.get('/directors/:name', async (req, res) => {
         });
 });
 
+/* Return All Actors */
+app.get('/actors', async (req, res) => {
+    await Movies.distinct("actor")
+        .then((movies) => {
+            res.json(movies);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
+});
+
+/* Return a Director by Name */
+app.get('/actors/:name', async (req, res) => {
+    await Movies.findOne({"actors.name": req.params.name},{"actors": 1})
+        .then ((movies) => {
+            res.json(movies);
+        })
+        .catch ((err) => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
+});
+
+/* Return all Users */
 app.get('/users', async (req, res) => {
     await Users.find()
         .then ((users) => {
@@ -97,6 +127,7 @@ app.get('/users', async (req, res) => {
         });
 });
 
+/* Return a User by Username */
 app.get('/users/:username', async (req, res) => {
     await Users.findOne({ username: req.params.username })
         .then((user) => {
@@ -108,14 +139,23 @@ app.get('/users/:username', async (req, res) => {
         });
 });
 
+/* Create a New User Account */
+/* JSON in the following format expected:
+{
+    username: String, (required),
+    password: String, (required),
+    first_name: String, (required),
+    last_name: String, (required),
+    email: String, (required),
+    birth: Date
+}*/
 app.post('/users', async(req, res) => {
     await Users.findOne({ username: req.body.username})
         .then((user) => {
             if (user) {
                 return res.status(400).send(req.body.username + ' already exists');
             } else {
-                Users
-                    .create({
+                Users.create({
                         username: req.body.username,
                         password: req.body.password,
                         first_name: req.body.first_name,
@@ -124,9 +164,9 @@ app.post('/users', async(req, res) => {
                         birth: req.body.birth
                     })
                     .then((user) => { res.status(201).json(user) })
-                .catch((error) => {
-                    console.error(error);
-                    res.status(500).send('Error: ' + error);
+                .catch((err) => {
+                    console.error(err);
+                    res.status(500).send('Error: ' + err);
                 })
             }
         })
@@ -136,8 +176,8 @@ app.post('/users', async(req, res) => {
         });
 });
 
-//Update a user's info, by username
-/* We'll expect JSON in this format
+//Update a user's info, search by username
+/* JSON in the following format expected:
 {
     username: String, (required)
     password: String, (required)
@@ -165,6 +205,7 @@ app.put('/users/:username', async (req, res) => {
     })
 });
 
+/* Add a moive to a user's favorites list */
 //Used $addToSet instead of $push to prevent duplicates from being added to the array
 app.put('/users/:username/favorites/:movieID', async (req, res) => {
     await Users.findOneAndUpdate({ username: req.params.username},{
@@ -181,6 +222,7 @@ app.put('/users/:username/favorites/:movieID', async (req, res) => {
     });
 });
 
+/* Remove a Movie from a user's favorite's list */
 app.delete('/users/:username/favorites/:movieID', async (req, res) => {
     await Users.findOneAndUpdate({ username: req.params.username },{
         $pull: { favorites: new mongoose.Types.ObjectId(req.params.movieID) }
@@ -195,6 +237,7 @@ app.delete('/users/:username/favorites/:movieID', async (req, res) => {
     });
 });
 
+/* Unregister a user, Search by username */
 app.delete('/users/:username', async (req, res) => {
     await Users.findOneAndRemove({ username: req.params.username})
     .then((user) => {

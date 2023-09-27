@@ -18,7 +18,7 @@
         movies.
       </div>
 
-      <table>
+      <table id="endpoint-table">
         <thead>
           <th>API Functions</th>
           <th>Description</th>
@@ -27,13 +27,15 @@
         </thead>
         <tbody>
           <tr>
-            <th><a href="#get-all-movies">Get All Movies</a></th>
+            <th><a href="#get-all-movies">Return All Movies</a></th>
             <td class="get">GET</td>
             <td>/movies</td>
-            <td>Return a list of ALL movies to the user</td>
+            <td>Return a list of ALL movies with their data (description, 
+              genre, director, image URL, whether it’sfeatured or not)
+            </td>
           </tr>
           <tr>
-            <th><a href="#get-one-movie">Get One Movie</a></th>
+            <th><a href="#get-one-movie">Return One Movie by Title</a></th>
             <td class="get">GET</td>
             <td>/movies/{movie-title}</td>
             <td>
@@ -42,7 +44,15 @@
             </td>
           </tr>
           <tr>
-            <th><a href="#get-a-genre">Get a Genre</a></th>
+            <th><a href="#get-all-genres">Return All Genre</a></th>
+            <td class="get">GET</td>
+            <td>/genres</td>
+            <td>
+              Return a list of all genre including their description
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-a-genre">Return One Genre by Name</a></th>
             <td class="get">GET</td>
             <td>/genres/{genre-title}</td>
             <td>
@@ -51,7 +61,16 @@
             </td>
           </tr>
           <tr>
-            <th><a href="#get-a-director">Get a Director</a></th>
+            <th><a href="#get-all-directors">Return All Directors</a></th>
+            <td class="get">GET</td>
+            <td>/directors</td>
+            <td>
+              Return a list of all directors including (bio, birth year, death year)
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <th><a href="#get-a-director">Return One Director by Name</a></th>
             <td class="get">GET</td>
             <td>/directors/{director-name}</td>
             <td>
@@ -59,12 +78,32 @@
             </td>
           </tr>
           <tr>
-            <th><a href="#get-an-actor">Get an Actor</a></th>
+            <th><a href="#get-all-actors">Return All Actors</a></th>
+            <td class="get">GET</td>
+            <td>/actors</td>
+            <td>
+              Return list of actors including their data (bio, birth year, death year)
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-an-actor">Return One Actor by Name</a></th>
             <td class="get">GET</td>
             <td>/actors/{actor-name}</td>
             <td>
               Return data about an actor (bio, birth year, death year) by name
             </td>
+          </tr>
+          <tr>
+            <th><a href="#get-all-users">Return All Users</a></th>
+            <td class="post">GET</td>
+            <td>/users</td>
+            <td>Return a list of All Users including their data (username, password, first name, last name, email, birthdate)</td>
+          </tr>
+          <tr>
+            <th><a href="#get-a-user">Return One User by Username</a></th>
+            <td class="post">GET</td>
+            <td>/users/{username}</td>
+            <td>Return one user by name including their data (username, password, first name, last name, email, birthdate)</td>
           </tr>
           <tr>
             <th><a href="#create-a-new-user">Create a New User</a></th>
@@ -76,12 +115,12 @@
             <th><a href="#update-user-info">Update User Info</a></th>
             <td class="put">PUT</td>
             <td>/users/{username}</td>
-            <td>Allow users to update their user info (username)</td>
+            <td>Allow users to update their user info</td>
           </tr>
           <tr>
             <th><a href="#add-movie-to-favorites">Add Movie to User's Favorites</a></th>
             <td class="put">PUT</td>
-            <!--I Chose movie-ID here since there are several movies with the same title-->
+            <!--I Chose movie-ID here since there are several movies that can have the same title-->
             <td>/users/{username}/favorites/movie-id</td>
             <td>
               Allow users to add a movie to their list of favorites (showing
@@ -110,7 +149,7 @@
         </tbody>
       </table>
 
-      <h2 id="get-all-movies">Get All Movies <span class="get">GET</span></h2>
+      <h2 id="get-all-movies">Return All Movies <span class="get">GET</span></h2>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -120,7 +159,7 @@
           <th class="response">Response Body Data Format</th>
         </thead>
         <tr>
-          <td>Return a list of ALL movies to the user</td>
+          <td>Return a list of all movies to the user</td>
           <td>/movies</td>
           <td>GET</td>
           <td>None</td>
@@ -145,7 +184,7 @@
         </tr>
       </table>
 
-      <h2 id="get-one-movie">Get One Movie <span class="get">GET</span></h2>
+      <h2 id="get-one-movie">Return One Movie by Title<span class="get">GET</span></h2>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -180,7 +219,42 @@
         </tr>
       </table>
 
-      <h2 id="get-a-genre">Get a Genre <span class="get">GET</span></h2>
+      <h2 id="get-all-genres">Return All Genres <span class="get">GET</span></h2>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
+          <td>
+            Return a list of all genres including their description
+          </td>
+          <td>/genres</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holidng data about all genres <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">title:</span> "Action",<br />
+              <span class="object-key">description:</span> "Action film is a
+              film genre in which the protagonist is thrust into a series of
+              events that typically involve violence and physical feats." <br />
+            </div>
+            },
+            {<br />
+            <div class="api-body">
+              <span class="object-key">...</span>
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
+      <h2 id="get-a-genre">Return One Genre by Name <span class="get">GET</span></h2>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -211,7 +285,46 @@
         </tr>
       </table>
 
-      <h2 id="get-a-director">Get a Director <span class="get">GET</span></h2>
+      <h2 id="get-all-directors">Return All Directors <span class="get">GET</span></h2>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
+          <td>
+            Return a list of all directors including their data (bio, birth year, death year)
+          </td>
+          <td>/directors</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holding data about all directors <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">name:</span> "Christopher Nolan",<br />
+              <span class="object-key">bio:</span> "Christopher Edward Nolan CBE
+              is a British and American filmmaker. Known for his Hollywood
+              blockbusters with complex storytelling, Nolan is considered a
+              leading filmmaker of the 21st century. His films have grossed $5
+              billion worldwide.",<br />
+              <span class="object-key">birthYear:</span> 1970,<br />
+              <span class="object-key">deathYear:</span> null <br />
+            </div>
+            },
+            {<br />
+            <div class="api-body">
+              <span class="object-key">...</span>
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
+      <h2 id="get-a-director">Return One Director by Name <span class="get">GET</span></h2>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -228,7 +341,7 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holidng data about a single director <br />
+            A JSON object holding data about a single director <br />
             {<br />
             <div class="api-body">
               <span class="object-key">name:</span> "Christopher Nolan",<br />
@@ -245,7 +358,45 @@
         </tr>
       </table>
 
-      <h2 id="get-an-actor">Get an Actor <span class="get">GET</span></h2>
+      <h2 id="get-all-actors">Return All Actors <span class="get">GET</span></h2>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
+          <td>
+            Return a list of all actors including their data (bio, birth year, death year) by name
+          </td>
+          <td>/actors/{actor-name}</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holidng data about a single director <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">name:</span> "Christian Bale",<br />
+              <span class="object-key">bio:</span> "Christian Charles Philip Bale is an English actor.
+              Known for his versatility and physical transformations for his roles, he has been a 
+              leading man in films of several genres. He has received various accolades, including an 
+              Academy Award and two Golden Globe Awards.",<br />
+              <span class="object-key">birthYear:</span> 1974,<br />
+              <span class="object-key">deathYear:</span> null <br />
+            </div>
+            },
+            {<br />
+            <div class="api-body">
+              <span class="object-key">...</span>
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
+      <h2 id="get-an-actor">Return One Actor by Name<span class="get">GET</span></h2>
       <table class="endpoint-table">
         <thead>
           <th>Description</th>
@@ -278,6 +429,76 @@
         </tr>
       </table>
 
+      <h2 id="get-all-users">Return All Users <span class="post">GET</span></h2>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
+          <td>Return a list of all users including their data (username, password, first name, last name, email, birthdate)</td>
+          <td>/users</td>
+          <td>POST</td>
+          <td>
+            None
+          </td>
+          <td>
+            A Json object holding data about the user that was added, including
+            an id:
+            <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1234,<br />
+              <span class="object-key">username:</span> "jdoe123",<br />
+              <span class="object-key">password:</span> "password" <br />
+              <span class="object-key">first name:</span> "John ",<br />
+              <span class="object-key">last name:</span> "Doe",<br />
+              <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              <span class="object-key">birth:</span> "1991-01-23" <br />
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
+      <h2 id="get-a-user">Return One User by Username <span class="post">GET</span></h2>
+      <table class="endpoint-table">
+        <thead>
+          <th>Description</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body Data Format</th>
+          <th class="response">Response Body Data Format</th>
+        </thead>
+        <tr>
+          <td>Return one user including data (username, password, first name, last name, email, birthdate), by name</td>
+          <td>/users/{username}</td>
+          <td>POST</td>
+          <td>
+            None
+          </td>
+          <td>
+            A Json object holding data about the user that was added, including
+            an id:
+            <br />
+            {<br />
+            <div class="api-body">
+              <span class="object-key">id:</span> 1234,<br />
+              <span class="object-key">username:</span> "jdoe123",<br />
+              <span class="object-key">password:</span> "password" <br />
+              <span class="object-key">first name:</span> "John ",<br />
+              <span class="object-key">last name:</span> "Doe",<br />
+              <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              <span class="object-key">birth:</span> "1991-01-23" <br />
+            </div>
+            }
+          </td>
+        </tr>
+      </table>
+
       <h2 id="create-a-new-user">Create a New User <span class="post">POST</span></h2>
       <table class="endpoint-table">
         <thead>
@@ -296,10 +517,12 @@
             <br />
             {<br />
             <div class="api-body">
+              <span class="object-key">username:</span> "jdoe123",<br />
+              <span class="object-key">password:</span> "password" <br />
               <span class="object-key">first name:</span> "John ",<br />
               <span class="object-key">last name:</span> "Doe",<br />
-              <span class="object-key">username:</span> "jdoe123",<br />
-              <span class="object-key">password:</span> password <br />
+              <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              <span class="object-key">birth:</span> "1991-01-23" <br />
             </div>
             }
           </td>
@@ -310,9 +533,12 @@
             {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
+              <span class="object-key">username:</span> "jdoe123",<br />
+              <span class="object-key">password:</span> "password" <br />
               <span class="object-key">first name:</span> "John ",<br />
               <span class="object-key">last name:</span> "Doe",<br />
-              <span class="object-key">username:</span> "jdoe123"<br />
+              <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              <span class="object-key">birth:</span> "1991-01-23" <br />
             </div>
             }
           </td>

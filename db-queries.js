@@ -27,3 +27,61 @@ var user1 = {username: "",password: "abc1234!",first_name: "",last_name: "",emai
 var user1 = {username: "",password: "abc1234!",first_name: "",last_name: "",email: "",birth: new Date(""),favorites: []}; db.movies.insertOne(user1);
 var user1 = {username: "",password: "abc1234!",first_name: "",last_name: "",email: "",birth: new Date(""),favorites: []}; db.movies.insertOne(user1);
 var user1 = {username: "",password: "abc1234!",first_name: "",last_name: "",email: "",birth: new Date(""),favorites: []}; db.movies.insertOne(user1);
+
+
+
+app.post('/movies', async (req, res) => {
+    await Movies.findOne({ username: req.body.title })
+        .then((movie) => {
+            if (movie) {
+                return res.status(400).send(req.body.title + ' already exists');
+            } else {
+                Movies.create(
+                {
+                    title: req.body.title,
+                    description: req.body.description,
+                    genre: {
+                        username: req.body.genre.username,
+                        description: req.body.genre.description
+                    },
+                    director: {
+                        name: req.body.director.Name,
+                        bio: req.body.director.bio,
+                        birth: req.body.director.birth,
+                        death: req.body.director.death
+                    },
+                    actors: [
+                        {
+                            name: req.body.actors.name1,
+                            bio: req.body.actors.bio1,
+                            birth: req.body.actors.birth1,
+                            death: req.body.actors.death1
+                        },
+                        {
+                            name: req.body.actors.name2,
+                            bio: req.body.actors.bio2,
+                            birth: req.body.actors.birth2,
+                            death: req.body.actors.death2
+                        },
+                        {
+                            name: req.body.actors.name3,
+                            bio: req.body.actors.bio3,
+                            birth: req.body.actors.birth3,
+                            death: req.body.actors.death3
+                        },
+                    ],
+                    imagePath: req.body.imagePath,
+                    featured: req.body.featured
+                })
+                .then((user) => { res.status(201).json(user) })
+                .catch((err) => {
+                    console.error(err);
+                    res.status(500).send('Error: ' + err);
+                })
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
+});
