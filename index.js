@@ -21,7 +21,7 @@ app.use(express.static('public'));
 
 /* Return All Movies */
 app.get('/movies', async (req, res) => {
-    await Movies.find()
+    await Movies.find({},{title: 1, url: 1})
         .then ((movies) => {
             res.json(movies);
         })
@@ -57,9 +57,9 @@ app.get('/genres', async (req, res) => {
 
 /* Returns A Genre by Name */
 app.get('/genres/:name', async (req, res) => {
-    await Movies.find({"genre.name": req.params.name},{"genre.name": 1, "genre.description": 1})
+    await Movies.findOne({"genre.name": req.params.name},{"genre.name": 1, "genre.description": 1})
         .then ((movies) => {
-            res.json(movies);
+            res.json(movies.genre);
         })
         .catch((err) => {
             console.error(err);
@@ -83,7 +83,7 @@ app.get('/directors', async (req, res) => {
 app.get('/directors/:name', async (req, res) => {
     await Movies.findOne({"director.name": req.params.name},{"director": 1})
         .then ((movies) => {
-            res.json(movies);
+            res.json(movies.director);
         })
         .catch ((err) => {
             console.error(err);
@@ -106,9 +106,9 @@ app.get('/actors', async (req, res) => {
 /* Return a Director by Name */
 /* I am unsure how to resolve this one. Currently it returns the full array of actors that the actor belongs to */
 app.get('/actors/:name', async (req, res) => {
-    await Movies.findOne({"actors.name": req.params.name},"actors.$")
+    await Movies.findOne({"actors.name": req.params.name},{"actors.$": 1})
         .then ((movies) => {
-            res.json(movies);
+            res.json(movies.actors);
         })
         .catch ((err) => {
             console.error(err);

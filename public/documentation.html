@@ -164,18 +164,26 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holidng data about all the movies <br />
+            A JSON object holding data about all the movies <br />
             [{<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">title:</span> "Batman Begins",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">url:</span>
               "/movies/Batman%20Begins",<br />
             </div>
             }, {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1235,<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">title:</span> "The Dark Knight",<br />
+            </div>
+              <div class="api-body">
               <span class="object-key">url:</span>
               "/moview/Batman%20Begins",<br />
             </div>
@@ -202,18 +210,98 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holidng data about a single movies <br />
+            A JSON object holding data about a single movies <br />
             {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
-              <span class="object-key">title:</span> "Batman Begins",<br />
-              <span class="object-key">director:</span> "Christopher Nolan",<br />
-              <span class="object-key">genre:</span> "Action/Fantasy",<br />
-              <span class="object-key">releaseYear:</span> 2005,<br />
-              <span class="object-key">imageUrl:</span>
-              "https://image.com/image.png",<br />
-              <span class="object-key">featured:</span> true <br />
             </div>
+            <div class="api-body">
+              <span class="object-key">title:</span> "Batman Begins",<br />
+              </div>
+              <div class="api-body">
+              <span class="object-key">url:</span> "/movies/Batman%20Begins",<br />
+              </div>
+              <div class="api-body">
+              <span class="object-key">description</span> "After witnessing his parents' death, 
+                                                          Bruce learns the art of fighting to 
+                                                          confront injustice. When he returns to 
+                                                          Gotham as Batman, he must stop a secret 
+                                                          society that intends to destroy the city.", <br>
+              </div>
+              <div class="api-body">
+              <span class="object-key">director:</span>
+              </div> 
+              <div class="nested-object">{
+                <div class="api-body">
+                <span class="object-key">name:</span> "Christopher Nolan",<br />
+                </div>
+                <div class="api-body">
+                <span class="object-key">bio:</span> "Christopher Edward Nolan CBE is a British and 
+                                                      American filmmaker. Known for his Hollywood 
+                                                      blockbusters with complex storytelling, Nolan 
+                                                      is considered a leading filmmaker of the 21st 
+                                                      century. His films have grossed $5 billion 
+                                                      worldwide.", <br>
+                </div>
+                <div class="api-body">
+                <span class="object-key">birth:</span> "1970-07-30T00:00:00.000Z", <br>
+                </div>
+                <div class="api-body">
+                <span class="object-key">death</span> "1970-07-30T00:00:00.000Z" <br>
+                </div>
+              }, <br>
+              <span class="object-key">actors:</span>
+              </div> 
+              <div class="nested-object">{
+                <div class="two-nested-object">{ <br>
+                <div class="api-body">
+                <span class="object-key">name:</span> "Christian Bale",<br />
+                </div>
+                <div class="api-body">
+                <span class="object-key">bio:</span> "Christian Charles Philip Bale is an English actor. 
+                                                      Known for his versatility and physical transformations 
+                                                      for his roles, he has been a leading man in films of 
+                                                      several genres. He has received various accolades, 
+                                                      including an Academy Award and two Golden Globe Awards." <br>
+                </div>
+                <div class="api-body">
+                <span class="object-key">birth:</span> "1970-07-30T00:00:00.000Z", <br>
+                </div>
+                <div class="api-body">
+                <span class="object-key">death:</span> "1970-07-30T00:00:00.000Z" <br>
+                </div>
+              </div>
+                <div class="nested-object">}, <br></div>
+                <div class="nested-object">{ <br>
+                  <div class="nested-object">... <br>
+              </div>} <br></div>
+              </div>
+              <div class="nested-object">}, <br></div>
+              <div class="api-body">
+                <span class="object-key">genre:</span>
+              </div> 
+              <div class="nested-object">{ <br>
+                <div class="api-body">
+                <span class="object-key">name:</span> "Action",<br />
+                </div>
+                <div class="api-body">
+                <span class="object-key">description:</span> "Movies in the action genre are fast-paced 
+                                                      and include a lot of action like fight scenes, 
+                                                      chase scenes, and slow-motion shots. They can 
+                                                      feature superheroes, martial arts, or exciting 
+                                                      stunts. These high-octane films are more about 
+                                                      the execution of the plot rather than the plot 
+                                                      itself. Action movies are thrilling to watch and 
+                                                      leave audience members on the edge of their seats." <br>
+                </div>
+              }, </div>
+              <div class="api-body">
+              <span class="object-key">imagePath:</span>
+              "https://image.com/image.png",<br /> 
+              </div>
+              <div class="api-body">
+              <span class="object-key">featured:</span> true <br />
+              </div>
             }
           </td>
         </tr>
@@ -236,10 +324,12 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holidng data about all genres <br />
+            A JSON object holding data about all genres <br />
             {<br />
             <div class="api-body">
               <span class="object-key">title:</span> "Action",<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">description:</span> "Action film is a
               film genre in which the protagonist is thrust into a series of
               events that typically involve violence and physical feats." <br />
@@ -272,10 +362,12 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holidng data about a single genre <br />
+            A JSON object holding data about a single genre <br />
             {<br />
             <div class="api-body">
               <span class="object-key">title:</span> "Action",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">description:</span> "Action film is a
               film genre in which the protagonist is thrust into a series of
               events that typically involve violence and physical feats." <br />
@@ -306,12 +398,18 @@
             {<br />
             <div class="api-body">
               <span class="object-key">name:</span> "Christopher Nolan",<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">bio:</span> "Christopher Edward Nolan CBE
               is a British and American filmmaker. Known for his Hollywood
               blockbusters with complex storytelling, Nolan is considered a
               leading filmmaker of the 21st century. His films have grossed $5
               billion worldwide.",<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">birthYear:</span> 1970,<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">deathYear:</span> null <br />
             </div>
             },
@@ -345,12 +443,17 @@
             {<br />
             <div class="api-body">
               <span class="object-key">name:</span> "Christopher Nolan",<br />
+            </div><div class="api-body">
               <span class="object-key">bio:</span> "Christopher Edward Nolan CBE
               is a British and American filmmaker. Known for his Hollywood
               blockbusters with complex storytelling, Nolan is considered a
               leading filmmaker of the 21st century. His films have grossed $5
               billion worldwide.",<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">birthYear:</span> 1970,<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">deathYear:</span> null <br />
             </div>
             }
@@ -375,15 +478,21 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holidng data about a single director <br />
+            A JSON object holding data about a single director <br />
             {<br />
             <div class="api-body">
               <span class="object-key">name:</span> "Christian Bale",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">bio:</span> "Christian Charles Philip Bale is an English actor.
               Known for his versatility and physical transformations for his roles, he has been a 
               leading man in films of several genres. He has received various accolades, including an 
               Academy Award and two Golden Globe Awards.",<br />
+            </div>
+              <div class="api-body">
               <span class="object-key">birthYear:</span> 1974,<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">deathYear:</span> null <br />
             </div>
             },
@@ -413,15 +522,24 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holidng data about a single director <br />
+            A JSON object holding data about a single director <br />
             {<br />
             <div class="api-body">
+              <span class="object-key">_id:</span> "6514a9b77707cd8d539df844",<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">name:</span> "Christian Bale",<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">bio:</span> "Christian Charles Philip Bale is an English actor.
               Known for his versatility and physical transformations for his roles, he has been a 
               leading man in films of several genres. He has received various accolades, including an 
               Academy Award and two Golden Globe Awards.",<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">birthYear:</span> 1974,<br />
+              </div>
+              <div class="api-body">
               <span class="object-key">deathYear:</span> null <br />
             </div>
             }
@@ -452,11 +570,23 @@
             {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">username:</span> "jdoe123",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">password:</span> "password" <br />
+            </div>
+            <div class="api-body">
               <span class="object-key">first name:</span> "John ",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">last name:</span> "Doe",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">birth:</span> "1991-01-23" <br />
             </div>
             }
@@ -487,11 +617,23 @@
             {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">username:</span> "jdoe123",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">password:</span> "password" <br />
+            </div>
+            <div class="api-body">
               <span class="object-key">first name:</span> "John ",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">last name:</span> "Doe",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+            </div>
+            <div class="api-body">
               <span class="object-key">birth:</span> "1991-01-23" <br />
             </div>
             }
@@ -516,14 +658,27 @@
             A Json object holding data about the user to add, structure like:
             <br />
             {<br />
-            <div class="api-body">
-              <span class="object-key">username:</span> "jdoe123",<br />
-              <span class="object-key">password:</span> "password" <br />
-              <span class="object-key">first name:</span> "John ",<br />
-              <span class="object-key">last name:</span> "Doe",<br />
-              <span class="object-key">email:</span> "johndoe@gmail.com",<br />
-              <span class="object-key">birth:</span> "1991-01-23" <br />
-            </div>
+              <div class="api-body">
+                <span class="object-key">id:</span> 1234,<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">username:</span> "jdoe123",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">password:</span> "password" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">first name:</span> "John ",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">last name:</span> "Doe",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">birth:</span> "1991-01-23" <br />
+              </div>
             }
           </td>
           <td>
@@ -531,15 +686,27 @@
             an id:
             <br />
             {<br />
-            <div class="api-body">
-              <span class="object-key">id:</span> 1234,<br />
-              <span class="object-key">username:</span> "jdoe123",<br />
-              <span class="object-key">password:</span> "password" <br />
-              <span class="object-key">first name:</span> "John ",<br />
-              <span class="object-key">last name:</span> "Doe",<br />
-              <span class="object-key">email:</span> "johndoe@gmail.com",<br />
-              <span class="object-key">birth:</span> "1991-01-23" <br />
-            </div>
+              <div class="api-body">
+                <span class="object-key">id:</span> 1234,<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">username:</span> "jdoe123",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">password:</span> "password" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">first name:</span> "John ",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">last name:</span> "Doe",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">birth:</span> "1991-01-23" <br />
+              </div>
             }
           </td>
         </tr>
@@ -599,7 +766,11 @@
             {<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234, <br />
+            </div>
+            <div class="api-body">
               <span class="object-key">title:</span> "Batman Begins",<br />
+            </div>
+              <div class="api-body">
               <span class="object-key">url:</span>
               "movies/batman%20begins"<br />
             </div>
@@ -609,12 +780,16 @@
             A JSON Object containing the movie that was added to the user's
             favorite list. <br />
             {<br />
-            <div class="api-body">
-              <span class="object-key">id:</span> 1234, <br />
-              <span class="object-key">title:</span> "Batman Begins",<br />
-              <span class="object-key">url:</span>
-              "movies/batman%20begins"<br />
-            </div>
+              <div class="api-body">
+                <span class="object-key">id:</span> 1234, <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">title:</span> "Batman Begins",<br />
+              </div>
+                <div class="api-body">
+                <span class="object-key">url:</span>
+                "movies/batman%20begins"<br />
+              </div>
             }
           </td>
         </tr>
@@ -640,7 +815,39 @@
           <td>DELETE</td>
           <td>None</td>
           <td>
-            Text message indicating movie was removed from user's favorites list.
+            A Json object holding data about the user and their updated favorites list (movie ids):
+            <br />
+            {<br />
+              <div class="api-body">
+                <span class="object-key">id:</span> 1234,<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">username:</span> "jdoe123",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">password:</span> "password" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">first name:</span> "John ",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">last name:</span> "Doe",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">birth:</span> "1991-01-23" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">favorites:</span>
+              </div> 
+              <div class="nested-object">[ <br>
+                <div class="api-body">
+                  "1234", "5678"<br>
+                </div>
+              ] </div>
+            }
           </td>
         </tr>
       </table>

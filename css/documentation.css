@@ -70,6 +70,24 @@ span.delete {
     border-radius: 3px;
 }
 
+div.nested-object {
+    padding: 0 20px;
+}
+
+div.two-nested-object {
+    padding: 0 20px;
+}
+
+.nested-object .api-body {
+    padding-left: 40px;
+    text-indent: -20px;
+}
+
+.two-nested-object .api-body {
+    padding-left: 40px;
+    text-indent: -20px;
+}
+
 .endpoint-table
  {
     width: 100%;
@@ -82,8 +100,9 @@ span.delete {
 
 .api-body {
     color: #ffa500;
-    padding-left: 20px;
+    padding-left: 40px;
     word-break: break-word;
+    text-indent: -20px;
 }
 
 .object-key {
