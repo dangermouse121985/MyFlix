@@ -116,3 +116,25 @@ div.two-nested-object {
 a {
     color: #fff;
 }
+
+#back-to-top {
+    position: sticky;
+    bottom: 10px;
+    width: 100%;
+}
+
+.btt-button {
+    position: relative;
+    float: right;
+    right: -100px;
+    bottom: 30px;
+    border: none;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--font-color--white);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btt-button:hover {
+    background-color: var(--primary-color);
+}
