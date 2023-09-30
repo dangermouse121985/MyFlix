@@ -4,7 +4,9 @@ const express = require('express'),
     path = require('path'),
     mongoose = require('mongoose'),
     Models = require('./models.js'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    { check, validationResult } = require('express-validator');
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -12,6 +14,19 @@ const Users = Models.User;
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        if(!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn't found on the list of allowed origins
+            let message = `The CORS policy for this application doesn't allow access from origin ` + origin;
+            return callback(new Error(message), false);
+        }
+        return callback(null, true);
+    }
+}));
 
 let auth = require('./auth')(app);
 const passport = require('passport');
@@ -163,7 +178,26 @@ app.get('/users/:username', passport.authenticate('jwt', { session: false }), as
     email: String, (required),
     birth: Date
 }*/
-app.post('/users', async(req, res) => {
+app.post('/users',
+    /* Validation logic here for request
+    you can either use a chain of methods like .not().isEmpty()
+    which means "opposite of isEmpty" in plain english "is not empty"
+    or use .isLength9({min: 5}) which means
+    minimum value of 5 characters are only allowed */
+    [
+        check('username', 'Username is required').isLength({min: 5}),
+        check('username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+        check('password', 'Password is required').not().isEmpty(),
+        check('Email', 'Email does not appear to be valid').isEmail()
+    ], async(req, res) => {
+        // Check the validation object for errors
+        let errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+
+    let hashedPassword = Users.hashPassword(req.body.password);
     await Users.findOne({ username: req.body.username})
         .then((user) => {
             if (user) {
@@ -171,7 +205,7 @@ app.post('/users', async(req, res) => {
             } else {
                 Users.create({
                         username: req.body.username,
-                        password: req.body.password,
+                        password: hashedPassword,
                         first_name: req.body.first_name,
                         last_name: req.body.last_name,
                         email: req.body.email,
