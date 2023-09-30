@@ -338,6 +338,6 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something Broke!');
 });
 
-app.listen(8080, () => {
-    console.log('The movie app has loaded and is listening on port 8080');
+app.listen(port, '0.0.0.0', () => {
+    console.log('Listening on Port ' + port);
 });
