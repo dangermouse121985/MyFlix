@@ -188,7 +188,7 @@ app.post('/users',
         check('username', 'Username is required').isLength({min: 5}),
         check('username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
         check('password', 'Password is required').not().isEmpty(),
-        check('Email', 'Email does not appear to be valid').isEmail()
+        check('email', 'Email does not appear to be valid').isEmail()
     ], async(req, res) => {
         // Check the validation object for errors
         let errors = validationResult(req);
@@ -232,14 +232,30 @@ app.post('/users',
     email: String, (required)
     birth: Date
 }*/
-app.put('/users/:username', passport.authenticate('jwt', { session: false}), async (req, res) => {
+app.put('/users/:username', passport.authenticate('jwt', { session: false}), 
+    [
+        check('username', 'Username is requierd').isLength({min: 5}),
+        check('username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+        check('password', 'Password is required to verify changes').not().isEmpty(),
+        check('email', 'Email does not appear to be valid').isEmail()
+    ], async (req, res) => {
+
     if (req.user.username !== req.params.username) {
         res.status(400).send('Permission Denied');
     }
+
+    //check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.password);
     await Users.findOneAndUpdate({username: req.params.username},{ $set:
         {
             username: req.body.username,
-            password: req.body.password,
+            password: hashedPassword,
             first_name: req.body.first_name,
             last_name: req.params.last_name,
             email: req.body.email,
