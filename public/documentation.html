@@ -1,17 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flix Documentation</title>
-</head>
-<body>
-    <h1>My Flix Documentation</h1>
-    <h2>Objective</h2>
-    <div>To build the server-side component of a “movies” web application. The web
-        application will provide users with access to information about different
-        movies, directors, and genres. Users will be able to sign up, update their
-        personal information, and create a list of their favorite movies.
-    </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/documentation.css" />
+    <title>My Flix API Documentation</title>
+  </head>
+  <body>
+    <main>
+      <h1>My Flix API Documentation</h1>
+      <h2>Objective</h2>
+      <div>
+        To build the server-side component of a “movies” web application. The
+        web application will provide users with access to information about
+        different movies, directors, and genres. Users will be able to sign up,
+        update their personal information, and create a list of their favorite
+        movies.
+      </div>
+
+      <table id="endpoint-table">
+        <thead>
+          <th>API Functions</th>
+          <th>Description</th>
+          <th>URL Endpoints</th>
+          <th>Descriptions</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th><a href="#get-all-movies">Return All Movies</a></th>
+            <td class="get">GET</td>
+            <td>/movies</td>
+            <td>Return a list of ALL movies with their data (description, 
+              genre, director, image URL, whether it’sfeatured or not)
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-one-movie">Return One Movie by Title</a></th>
+            <td class="get">GET</td>
+            <td>/movies/{movie-title}</td>
+            <td>
+              Return data (description, genre, director, image URL, whether it’s
+              featured or not) about a single movie by title to the user
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-all-genres">Return All Genre</a></th>
+            <td class="get">GET</td>
+            <td>/genres</td>
+            <td>
+              Return a list of all genre including their description
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-a-genre">Return One Genre by Name</a></th>
+            <td class="get">GET</td>
+            <td>/genres/{genre-title}</td>
+            <td>
+              Return data about a genre (description) by name/title (e.g.,
+              “Thriller”)
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-all-directors">Return All Directors</a></th>
+            <td class="get">GET</td>
+            <td>/directors</td>
+            <td>
+              Return a list of all directors including (bio, birth year, death year)
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-a-director">Return One Director by Name</a></th>
+            <td class="get">GET</td>
+            <td>/directors/{director-name}</td>
+            <td>
+              Return data about a director (bio, birth year, death year) by name
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-all-actors">Return All Actors</a></th>
+            <td class="get">GET</td>
+            <td>/actors</td>
+            <td>
+              Return list of actors including their data (bio, birth year, death year)
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-an-actor">Return One Actor by Name</a></th>
+            <td class="get">GET</td>
+            <td>/actors/{actor-name}</td>
+            <td>
+              Return data about an actor (bio, birth year, death year) by name
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#get-all-users">Return All Users</a></th>
+            <td class="get">GET</td>
+            <td>/users</td>
+            <td>Return a list of All Users including their data (username, password, first name, last name, email, birthdate)</td>
+          </tr>
+          <tr>
+            <th><a href="#get-a-user">Return One User by Username</a></th>
+            <td class="get">GET</td>
+            <td>/users/{username}</td>
+            <td>Return one user by name including their data (username, password, first name, last name, email, birthdate)</td>
+          </tr>
+          <tr>
+            <th><a href="#create-a-new-user">Create a New User</a></th>
+            <td class="post">POST</td>
+            <td>/users</td>
+            <td>Allow new users to register</td>
+          </tr>
+          <tr>
+            <th><a href="#update-user-info">Update User Info</a></th>
+            <td class="put">PUT</td>
+            <td>/users/{username}</td>
+            <td>Allow users to update their user info</td>
+          </tr>
+          <tr>
+            <th><a href="#add-movie-to-favorites">Add Movie to User's Favorites</a></th>
+            <td class="put">PUT</td>
+            <!--I Chose movie-ID here since there are several movies that can have the same title-->
+            <td>/users/{username}/favorites/movie-id</td>
+            <td>
+              Allow users to add a movie to their list of favorites (showing
+              only a text that a movie has been added)
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#remove-movie-from-favorites">Remove a Movie from User's Favorites</a></th>
+            <td class="delete">DELETE</td>
+            <!--I Chose movie-ID here since there are several movies with the same title-->
+            <td>/users/{username}/favorites/{movie-id}</td>
+            <td>
+              Allow users to remove a movie from their list of favorites
+              (showing only a text that a movie has been removed)
+            </td>
+          </tr>
+          <tr>
+            <th><a href="#delete-user">Delete User<a</th>
+            <td class="delete">DELETE</td>
+            <td>/users/{username}</td>
+            <td>
+              Allow existing users to deregister (showing only a text that a
+              user email has been removed)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="endpoints">
+
+      </div>
+      <div id="back-to-top">
+        <button class="btt-button">Back to Top</button>
+      </div>
+      
+      <script src="../scripts/documentation.js"></script>
+    </main>
+  </body>
 </html>
