@@ -514,3 +514,4 @@
 ::1 - - [30/Sep/2023:19:45:02 +0000] "PUT /users/dcrichlow1985 HTTP/1.1" 422 104 "-" "PostmanRuntime/7.33.0"
 ::1 - - [30/Sep/2023:19:45:54 +0000] "PUT /users/dcrichlow1985 HTTP/1.1" 422 104 "-" "PostmanRuntime/7.33.0"
 ::1 - - [30/Sep/2023:19:46:01 +0000] "PUT /users/dcrichlow1985 HTTP/1.1" 200 275 "-" "PostmanRuntime/7.33.0"
+::1 - - [30/Sep/2023:21:16:04 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.33.0"
