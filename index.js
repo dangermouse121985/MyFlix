@@ -33,7 +33,7 @@ const passport = require('passport');
 require('./passport');
 
 //mongoose.connect('mongodb://localhost:27017/movieflixdb', { useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect('mongodb+srv://dcrichlow:vpzYrps9D8bmxu9L@myflixdb.8b1fcya.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('process.env.CONNECTION_URI', { useNewUrlParser: true, useUnifiedTopology: true});
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
