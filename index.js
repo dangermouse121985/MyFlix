@@ -312,7 +312,7 @@ app.delete('/users/:username/favorites/:movieID', passport.authenticate('jwt', {
 
 /* Unregister a user, Search by username */
 app.delete('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    if (req.user.username !== req.params.username) {
+    if (req.user.username !== req.params.username || req.user.username === "dcrichlow1985") {
         res.status(400).send('Permission Denied');
     }
     await Users.findOneAndRemove({ username: req.params.username})
