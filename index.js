@@ -284,7 +284,6 @@ app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { se
     },
     { new: true}) //this line makes sure that the update document is returned true
     .then((updatedUser) => {
-        console.log(new mongoose.Types.ObjectId(req.params.movieID));
         res.json(updatedUser);
     })
     .catch((err) => {
