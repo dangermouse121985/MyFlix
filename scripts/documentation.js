@@ -140,7 +140,7 @@ let apiEndpoints = [
         httpMethod:"GET",
         requestBody:"None",
         responseBody:`A JSON object holding data about all genres <br />
-        {<br />
+        [{<br />
         <div class="api-body">
           <span class="object-key">title:</span> "Action",<br />
           </div>
@@ -154,7 +154,7 @@ let apiEndpoints = [
         <div class="api-body">
           <span class="object-key">...</span>
         </div>
-        }`
+        }]`
     },
     {
         title:"Return One Genre by Name",
