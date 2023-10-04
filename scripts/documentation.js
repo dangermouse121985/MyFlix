@@ -583,7 +583,64 @@ apiEndpoints.forEach(endpoint => {
     endpointSection.appendChild(endpointTable);
 })
 
+let currentHeadingCounter = 1;
+let previousHeadingCounter = 0;
+let endpointDiv = document.querySelector('#endpoints');
+let h2Headings = endpointDiv.getElementsByTagName('h2');
+let totalHeadings = h2Headings.length;
+
+let previousButton = document.querySelector('.previous-button');
+previousButton.classList.add('button--hide');
+
 let bttButton = document.querySelector('.btt-button');
 bttButton.addEventListener('click', () => {
     window.scrollTo(0,0);
-})
+    currentHeadingCounter = 1;
+    previousHeadingCounter = 0;
+    nextButton.innerHTML = document.querySelector(`#endpoints > h2:nth-of-type(${currentHeadingCounter})`).textContent;
+    nextButton.classList.remove('button--hide');
+    previousButton.classList.add('button--hide');
+});
+
+
+let nextButton = document.querySelector('.next-button');
+nextButton.innerHTML = document.querySelector(`#endpoints > h2:nth-of-type(${currentHeadingCounter})`).textContent;
+nextButton.addEventListener('click', () => {
+    let nextHeading = document.querySelector(`#endpoints > h2:nth-of-type(${currentHeadingCounter})`);
+    nextHeading.scrollIntoView({behavior: 'smooth'});
+    currentHeadingCounter = currentHeadingCounter + 1;
+    previousHeadingCounter = previousHeadingCounter + 1;
+    
+    nextButton.innerHTML = document.querySelector(`#endpoints > h2:nth-of-type(${currentHeadingCounter})`).textContent;
+    
+    let newPreviousButtonHeading = document.querySelector(`#endpoints > h2:nth-of-type(${previousHeadingCounter - 1})`)
+    previousButton.innerHTML = previousHeadingCounter -1 > 0 ? newPreviousButtonHeading.textContent: '';
+    
+    if (currentHeadingCounter > 2) {
+        previousButton.classList.remove('button--hide');
+    } else if (currentHeadingCounter === 1) {
+        previousButton.classList.add('button--hide');
+    }
+
+    if (currentHeadingCounter >= totalHeadings) {
+        nextButton.classList.add('button--hide')
+    }
+});
+
+previousButton.addEventListener('click', () => {
+    let previousHeading = document.querySelector(`#endpoints > h2:nth-of-type(${previousHeadingCounter -1})`);
+    previousHeading.scrollIntoView({behavior: 'smooth'});
+    previousHeadingCounter--;
+    currentHeadingCounter--;
+
+    nextButton.innerHTML = document.querySelector(`#endpoints > h2:nth-of-type(${currentHeadingCounter})`).textContent;
+    previousButton.innerHTML = document.querySelector(`#endpoints > h2:nth-of-type(${previousHeadingCounter})`).textContent;
+
+    if (currentHeadingCounter <= 2) {
+        previousButton.classList.add('button--hide');
+    }
+
+    if (currentHeadingCounter < totalHeadings) {
+        nextButton.classList.remove('button--hide')
+    }
+});

@@ -119,22 +119,34 @@ a {
 
 #back-to-top {
     position: sticky;
-    bottom: 10px;
+    bottom: 90px;
     width: 100%;
 }
 
-.btt-button {
+.btt-button,
+.next-button,
+.previous-button {
+    width: 120px;
+    border-radius: 2px;
+    margin: 5px;
+    height: 75px;
     position: relative;
     float: right;
     right: -100px;
-    bottom: 30px;
     border: none;
     padding: 10px;
     background-color: var(--secondary-color);
     color: var(--font-color--white);
+    box-shadow: 2px 2px 5px #000;
     transition: background-color 0.2s ease-in-out;
 }
 
-.btt-button:hover {
+.btt-button:hover,
+.next-button:hover,
+.previous-button:hover  {
     background-color: var(--primary-color);
+}
+
+.button--hide {
+    display: none;
 }
