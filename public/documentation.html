@@ -30,8 +30,7 @@
             <th><a href="#get-all-movies">Return All Movies</a></th>
             <td class="get">GET</td>
             <td>/movies</td>
-            <td>Return a list of ALL movies with their data (description, 
-              genre, director, image URL, whether it’sfeatured or not)
+            <td>Return a list of ALL movies with their id, title, and URL (URL used to retrieve detailed information about the movie)
             </td>
           </tr>
           <tr>
@@ -325,7 +324,7 @@
           <td>None</td>
           <td>
             A JSON object holding data about all genres <br />
-            {<br />
+            [{<br />
             <div class="api-body">
               <span class="object-key">title:</span> "Action",<br />
               </div>
@@ -339,7 +338,7 @@
             <div class="api-body">
               <span class="object-key">...</span>
             </div>
-            }
+            }]
           </td>
         </tr>
       </table>
@@ -395,7 +394,7 @@
           <td>None</td>
           <td>
             A JSON object holding data about all directors <br />
-            {<br />
+            [{<br />
             <div class="api-body">
               <span class="object-key">name:</span> "Christopher Nolan",<br />
               </div>
@@ -417,7 +416,7 @@
             <div class="api-body">
               <span class="object-key">...</span>
             </div>
-            }
+            }]
           </td>
         </tr>
       </table>
@@ -479,7 +478,7 @@
           <td>None</td>
           <td>
             A JSON object holding data about a single director <br />
-            {<br />
+            [{<br />
             <div class="api-body">
               <span class="object-key">name:</span> "Christian Bale",<br />
             </div>
@@ -500,7 +499,7 @@
             <div class="api-body">
               <span class="object-key">...</span>
             </div>
-            }
+            }]
           </td>
         </tr>
       </table>
@@ -559,7 +558,7 @@
         <tr>
           <td>Return a list of all users including their data (username, password, first name, last name, email, birthdate)</td>
           <td>/users</td>
-          <td>POST</td>
+          <td>GET</td>
           <td>
             None
           </td>
@@ -567,7 +566,7 @@
             A Json object holding data about the user that was added, including
             an id:
             <br />
-            {<br />
+            [{<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
             </div>
@@ -589,7 +588,7 @@
             <div class="api-body">
               <span class="object-key">birth:</span> "1991-01-23" <br />
             </div>
-            }
+            }]
           </td>
         </tr>
       </table>
