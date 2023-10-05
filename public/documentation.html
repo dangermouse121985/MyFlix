@@ -94,7 +94,7 @@
           </tr>
           <tr>
             <th><a href="#get-all-users">Return All Users</a></th>
-            <td class="post">GET</td>
+            <td class="get">GET</td>
             <td>/users</td>
             <td>Return a list of All Users including their data (username, password, first name, last name, email, birthdate)</td>
           </tr>
@@ -120,7 +120,7 @@
             <th><a href="#add-movie-to-favorites">Add Movie to User's Favorites</a></th>
             <td class="put">PUT</td>
             <!--I Chose movie-ID here since there are several movies that can have the same title-->
-            <td>/users/{username}/favorites/movie-id</td>
+            <td>/users/{username}/favorites/{movie-id}</td>
             <td>
               Allow users to add a movie to their list of favorites (showing
               only a text that a movie has been added)
@@ -163,7 +163,7 @@
           <td>GET</td>
           <td>None</td>
           <td>
-            A JSON object holding data about all the movies <br />
+            A JSON object holding data about all the movies with their id, title, and URL (URL used to retrieve detailed information about the movie)<br />
             [{<br />
             <div class="api-body">
               <span class="object-key">id:</span> 1234,<br />
@@ -203,7 +203,7 @@
         <tr>
           <td>
             Return data (description, genre, director, image URL, whether it’s
-            featured or not) about a single movie by title to the userv
+            featured or not) about a single movie by title to the user
           </td>
           <td>/movies/{movie-title}</td>
           <td>GET</td>
@@ -721,24 +721,50 @@
           <th class="response">Response Body Data Format</th>
         </thead>
         <tr>
-          <td>Allow users to update their user info (username).</td>
+          <td>Allow users to update their user info.</td>
           <td>/users/{username}</td>
           <td>Put</td>
           <td>
-            A JSON object containing the user's new Username to add. <br />
+            A JSON object containing the field and value to change and user's password to verify changes. Example <br />
             {<br />
             <div class="api-body">
-              <span class="object-key">username:</span> "JohnDoe123"<br />
+              <span class="object-key">email:</span> "johndoe@gmail.com"<br />
             </div>
             }
           </td>
           <td>
-            A JSON Object containing the user's new Username that was added. <br>
+            A Json object holding data about the user and their updated user info:<br />
             {<br />
-            <div class="api-body">
-              <span class="object-key">username:</span> "JohnDoe123"<br />
-            </div>
-            }
+              <div class="api-body">
+                <span class="object-key">id:</span> 1234,<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">username:</span> "jdoe123",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">password:</span> "password" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">first name:</span> "John ",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">last name:</span> "Doe",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">birth:</span> "1991-01-23" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">favorites:</span>
+              </div> 
+              <div class="nested-object">[ <br>
+                <div class="api-body">
+                  "1234", "5678"<br>
+                </div>
+              ] </div>
+              }
           </td>
         </tr>
       </table>
