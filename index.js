@@ -276,7 +276,7 @@ app.put('/users/:username', passport.authenticate('jwt', { session: false}),
 /* Add a moive to a user's favorites list */
 //Used $addToSet instead of $push to prevent duplicates from being added to the array
 app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    if (req.user.username !== res.params.username) {
+    if (req.user.username !== req.params.username) {
         res.status(400).send('Permission Denied');
     }
     await Users.findOneAndUpdate({ username: req.params.username},{
@@ -294,7 +294,7 @@ app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { se
 
 /* Remove a Movie from a user's favorite's list */
 app.delete('/users/:username/favorites/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    if (req.user.username !== res.params.username) {
+    if (req.user.username !== req.params.username) {
         res.status(400).send('Permission Denied');
     }
     await Users.findOneAndUpdate({ username: req.params.username },{
