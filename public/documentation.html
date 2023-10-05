@@ -760,36 +760,41 @@
           <td>/users/{username}/favorites/{movie-id}</td>
           <td>PUT</td>
           <td>
-            A JSON Object containing the movie to be added to the user's
-            favorite list. <br />
-            {<br />
-            <div class="api-body">
-              <span class="object-key">id:</span> 1234, <br />
-            </div>
-            <div class="api-body">
-              <span class="object-key">title:</span> "Batman Begins",<br />
-            </div>
-              <div class="api-body">
-              <span class="object-key">url:</span>
-              "movies/batman%20begins"<br />
-            </div>
-            }
+            None
           </td>
           <td>
-            A JSON Object containing the movie that was added to the user's
-            favorite list. <br />
+            A Json object holding data about the user and their updated favorites list (movie ids):<br />
             {<br />
               <div class="api-body">
-                <span class="object-key">id:</span> 1234, <br />
+                <span class="object-key">id:</span> 1234,<br />
               </div>
               <div class="api-body">
-                <span class="object-key">title:</span> "Batman Begins",<br />
+                <span class="object-key">username:</span> "jdoe123",<br />
               </div>
+              <div class="api-body">
+                <span class="object-key">password:</span> "password" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">first name:</span> "John ",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">last name:</span> "Doe",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">birth:</span> "1991-01-23" <br />
+              </div>
+              <div class="api-body">
+                <span class="object-key">favorites:</span>
+              </div> 
+              <div class="nested-object">[ <br>
                 <div class="api-body">
-                <span class="object-key">url:</span>
-                "movies/batman%20begins"<br />
-              </div>
-            }
+                  "1234", "5678"<br>
+                </div>
+              ] </div>
+              }
           </td>
         </tr>
       </table>

@@ -429,3 +429,5 @@
 ::1 - - [27/Sep/2023:22:45:12 +0000] "GET /movies/Star%20Wars%3a%20Episode%20IV%20-%20A%20New%20Hope HTTP/1.1" 200 2616 "-" "PostmanRuntime/7.33.0"
 ::1 - - [28/Sep/2023:00:39:35 +0000] "GET /movies/Silence%20of%20the%20Lambs HTTP/1.1" 200 1778 "-" "PostmanRuntime/7.33.0"
 ::1 - - [28/Sep/2023:00:44:25 +0000] "GET /movies/The%20Dark%20Knight HTTP/1.1" 200 2161 "-" "PostmanRuntime/7.33.0"
+::1 - - [05/Oct/2023:02:00:11 +0000] "GET /users HTTP/1.1" 201 1247 "-" "PostmanRuntime/7.33.0"
+::1 - - [05/Oct/2023:02:00:45 +0000] "PUT /users/PParker1234/favorites/6510aa57c3067b746ee3602f HTTP/1.1" 200 295 "-" "PostmanRuntime/7.33.0"
