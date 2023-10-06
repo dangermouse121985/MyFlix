@@ -80,7 +80,7 @@ let apiEndpoints = [
           }, <br>
           <span class="object-key">actors:</span>
           </div> 
-          <div class="nested-object">{
+          <div class="nested-object">[
             <div class="two-nested-object">{ <br>
             <div class="api-body">
             <span class="object-key">name:</span> "Christian Bale",<br />
@@ -104,7 +104,7 @@ let apiEndpoints = [
               <div class="nested-object">... <br>
           </div>} <br></div>
           </div>
-          <div class="nested-object">}, <br></div>
+          <div class="nested-object">], <br></div>
           <div class="api-body">
             <span class="object-key">genre:</span>
           </div> 
