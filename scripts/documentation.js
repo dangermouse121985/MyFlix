@@ -6,7 +6,7 @@ let apiEndpoints = [
         url:"/movies",
         httpMethod:"GET",
         requestBody:"None",
-        responseBody:`A JSON object holding data about all the movies <br />
+        responseBody:`	A JSON object holding data about all the movies with their id, title, and URL (URL used to retrieve detailed information about the movie) <br />
         [{<br />
         <div class="api-body">
           <span class="object-key">id:</span> 1234,<br />
@@ -183,7 +183,7 @@ let apiEndpoints = [
         httpMethod:"GET",
         requestBody:"None",
         responseBody:`A JSON object holding data about all directors <br />
-        {<br />
+        [{<br />
         <div class="api-body">
           <span class="object-key">name:</span> "Christopher Nolan",<br />
           </div>
@@ -205,7 +205,7 @@ let apiEndpoints = [
         <div class="api-body">
           <span class="object-key">...</span>
         </div>
-        }`
+        }]`
     },
     {
         title:"Return One Director by Name",
@@ -241,7 +241,7 @@ let apiEndpoints = [
         httpMethod:"GET",
         requestBody:"None",
         responseBody:`A JSON object holding data about a single director <br />
-        {<br />
+        [{<br />
         <div class="api-body">
           <span class="object-key">name:</span> "Christian Bale",<br />
         </div>
@@ -262,7 +262,7 @@ let apiEndpoints = [
         <div class="api-body">
           <span class="object-key">...</span>
         </div>
-        }`
+        }]`
     },
     {
         title:"Return One Actor by Name",
@@ -303,7 +303,7 @@ let apiEndpoints = [
         responseBody:`A Json object holding data about the user that was added, including
         an id:
         <br />
-        {<br />
+        [{<br />
         <div class="api-body">
           <span class="object-key">id:</span> 1234,<br />
         </div>
@@ -330,7 +330,7 @@ let apiEndpoints = [
         <div class="api-body">
           <span class="object-key">...</span>
         </div>
-        }`
+        }]`
     },
     {
         title:"Return One User by Username",
@@ -430,17 +430,43 @@ let apiEndpoints = [
         anchorTag: "update-user-info",
         url:"/users/{username}",
         httpMethod:"PUT",
-        requestBody:`A JSON object containing the user's new Username to add. <br />
+        requestBody:`A JSON object containing the field and new value to be updated. <br />
         {<br />
         <div class="api-body">
-          <span class="object-key">username:</span> "JohnDoe123"<br />
+          <span class="object-key">email: "johndoe@gmail.com"<br />
         </div>
         }`,
         responseBody:`A JSON Object containing the user's new Username that was added. <br>
         {<br />
-        <div class="api-body">
-          <span class="object-key">username:</span> "JohnDoe123"<br />
-        </div>
+          <div class="api-body">
+            <span class="object-key">id:</span> 1234,<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">username:</span> "jdoe123",<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">password:</span> "password" <br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">first name:</span> "John ",<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">last name:</span> "Doe",<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">birth:</span> "1991-01-23" <br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">favorites:</span>
+          </div> 
+          <div class="nested-object">[ <br>
+            <div class="api-body">
+              "1234", "5678"<br>
+            </div>
+          ] </div>
         }`
     },
     {
@@ -467,15 +493,34 @@ let apiEndpoints = [
         favorite list. <br />
         {<br />
           <div class="api-body">
-            <span class="object-key">id:</span> 1234, <br />
+            <span class="object-key">id:</span> 1234,<br />
           </div>
           <div class="api-body">
-            <span class="object-key">title:</span> "Batman Begins",<br />
+            <span class="object-key">username:</span> "jdoe123",<br />
           </div>
+          <div class="api-body">
+            <span class="object-key">password:</span> "password" <br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">first name:</span> "John ",<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">last name:</span> "Doe",<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">email:</span> "johndoe@gmail.com",<br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">birth:</span> "1991-01-23" <br />
+          </div>
+          <div class="api-body">
+            <span class="object-key">favorites:</span>
+          </div> 
+          <div class="nested-object">[ <br>
             <div class="api-body">
-            <span class="object-key">url:</span>
-            "movies/batman%20begins"<br />
-          </div>
+              "1234", "5678"<br>
+            </div>
+          ] </div>
         }`
     },
     {
