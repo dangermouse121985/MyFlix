@@ -6,7 +6,7 @@ let apiEndpoints = [
         url:"/movies",
         httpMethod:"GET",
         requestBody:"None",
-        responseBody:`A JSON object holding data about all the movies <br />
+        responseBody:`A JSON object holding data about all the movies with their id, title, and URL (URL used to retrieve detailed information about the movie)<br />
         [{<br />
         <div class="api-body">
           <span class="object-key">id:</span> 1234,<br />
@@ -80,7 +80,7 @@ let apiEndpoints = [
           }, <br>
           <span class="object-key">actors:</span>
           </div> 
-          <div class="nested-object">{
+          <div class="nested-object">[
             <div class="two-nested-object">{ <br>
             <div class="api-body">
             <span class="object-key">name:</span> "Christian Bale",<br />
@@ -104,7 +104,7 @@ let apiEndpoints = [
               <div class="nested-object">... <br>
           </div>} <br></div>
           </div>
-          <div class="nested-object">}, <br></div>
+          <div class="nested-object">], <br></div>
           <div class="api-body">
             <span class="object-key">genre:</span>
           </div> 
@@ -484,8 +484,7 @@ let apiEndpoints = [
         url:"/users/{username}/favorites/{movie-id}",
         httpMethod:"PUT",
         requestBody:'None',
-        responseBody:`A JSON Object containing the movie that was added to the user's
-        favorite list. <br />
+        responseBody:`A Json object holding data about the user and their updated favorites list (movie ids): <br />
         {<br />
         <div class="api-body">
           <span class="object-key">id:</span> 1234,<br />
