@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
-//test
 /* let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234']; 
 
 app.use(cors({
