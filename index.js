@@ -41,7 +41,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.static('public'));
 
 /* Return All Movies */
-app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.get('/movies', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
     await Movies.find({}, { title: 1, url: 1 })
         .then((movies) => {
             res.json(movies);
