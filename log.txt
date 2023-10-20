@@ -525,3 +525,4 @@
 127.0.0.1 - - [05/Oct/2023:01:54:02 +0000] "PUT /users/PParker1234/favorites/6510aa57c3067b746ee3602f HTTP/1.1" 500 296 "-" "PostmanRuntime/7.33.0"
 127.0.0.1 - - [05/Oct/2023:01:54:30 +0000] "PUT /users/PParker1234/favorites/6510aa57c3067b746ee3602f HTTP/1.1" 500 296 "-" "PostmanRuntime/7.33.0"
 127.0.0.1 - - [05/Oct/2023:01:54:36 +0000] "PUT /users/PParker1234/favorites/6510aa57c3067b746ee3602f HTTP/1.1" 200 295 "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [20/Oct/2023:21:10:05 +0000] "GET /movies HTTP/1.1" 200 39825 "-" "PostmanRuntime/7.33.0"

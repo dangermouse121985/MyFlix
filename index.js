@@ -33,8 +33,8 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-//mongoose.connect('mongodb://localhost:27017/movieflixdb', { useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/movieflixdb', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), { flags: 'a' });
 
@@ -43,7 +43,7 @@ app.use(express.static('public'));
 
 /* Return All Movies */
 app.get('/movies', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
-    await Movies.find({}, { title: 1, url: 1, imagePath: 1 })
+    await Movies.find()
         .then((movies) => {
             res.json(movies);
         })
