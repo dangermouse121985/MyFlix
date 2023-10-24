@@ -42,7 +42,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.static('public'));
 
 /* Return All Movies */
-app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.get('/movies', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
     await Movies.find()
         .then((movies) => {
             res.json(movies);
@@ -54,7 +54,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 /* Return A Movie By its Title */
-app.get('/movies/:title', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.get('/movies/:title', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
     await Movies.findOne({ title: req.params.title })
         .then((movie) => {
             res.json(movie);
@@ -127,7 +127,7 @@ app.get('/actors', passport.authenticate('jwt', { session: false }), async (req,
 
 /* Return a Director by Name */
 /* I am unsure how to resolve this one. Currently it returns the full array of actors that the actor belongs to */
-app.get('/actors/:name', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
+app.get('/actors/:name', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.findOne({ "actors.name": req.params.name }, { "actors.$": 1 })
         .then((movies) => {
             res.json(movies.actors);
@@ -139,7 +139,7 @@ app.get('/actors/:name', /*passport.authenticate('jwt', { session: false }),*/ a
 });
 
 /* Return all Users */
-app.get('/users', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
+app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.username !== 'dcrichlow1985') {
         console.log(req.user.username)
         return res.status(400).send('Permission Denied');
