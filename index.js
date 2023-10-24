@@ -42,7 +42,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.static('public'));
 
 /* Return All Movies */
-app.get('/movies', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.find()
         .then((movies) => {
             res.json(movies);
@@ -54,7 +54,7 @@ app.get('/movies', /*passport.authenticate('jwt', { session: false }),*/ async (
 });
 
 /* Return A Movie By its Title */
-app.get('/movies/:title', /*passport.authenticate('jwt', { session: false }),*/ async (req, res) => {
+app.get('/movies/:title', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.findOne({ title: req.params.title })
         .then((movie) => {
             res.json(movie);
