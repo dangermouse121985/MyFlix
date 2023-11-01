@@ -289,6 +289,7 @@ app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { se
         { new: true }) //this line makes sure that the update document is returned true
         .then((updatedUser) => {
             res.json(updatedUser);
+            return req.body;
         })
         .catch((err) => {
             console.error(err);
