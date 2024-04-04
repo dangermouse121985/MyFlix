@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://dacflix.netlify.app'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4020', 'https://dacflix.netlify.app'];
 
 app.use(cors({
     origin: (origin, callback) => {
