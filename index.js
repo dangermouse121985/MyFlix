@@ -42,7 +42,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.static('public'));
 
 /** 
-* @name Return all Movies
+* @name GET - Return all Movies
 * @description Return a list of all movies to the user
 * @function
 * @returns {array} Lis of all movie objects containing an id, title, and url of each.
@@ -69,7 +69,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 /** 
- * @name Return One Movie by Title
+ * @name GET - Return One Movie by Title
  * @description Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the userv
  * @function
  * @param {string} title - Movie Title
@@ -120,7 +120,7 @@ app.get('/movies/:title', passport.authenticate('jwt', { session: false }), asyn
 });
 
 /** 
- * @name Return All Genres 
+ * @name GET - Return All Genres 
  * @description Return a list of all genres including their description
  * @function
  * @returns {array} - List of all Genres with names and descriptions
@@ -146,7 +146,7 @@ app.get('/genres', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 /** 
- * @name Return A Genre by Name
+ * @name GET - Return A Genre by Name
  * @description Return a list of all genres including their description
  * @function
  * @param {string} name - Genre Name
@@ -169,7 +169,7 @@ app.get('/genres/:name', passport.authenticate('jwt', { session: false }), async
 });
 
 /** 
- * @name Return All Directors 
+ * @name GET - Return All Directors 
  * @description Return a list of all directors including their data (bio, birth year, death year)
  * @function
  * @returns {array} - List of director objects with name, bio, birthYear, and deathYear of each director.
@@ -195,7 +195,7 @@ app.get('/directors', passport.authenticate('jwt', { session: false }), async (r
 });
 
 /** 
- * @name Return one Director by Name 
+ * @name GET - Return one Director by Name 
  * @description Return data about a director (bio, birth year, death year) by name
  * @function
  * @param {string} name - Director Name
@@ -220,7 +220,7 @@ app.get('/directors/:name', passport.authenticate('jwt', { session: false }), as
 });
 
 /** 
- * @name Return All Actors 
+ * @name GET - Return All Actors 
  * @description Return a list of all actors including their data (bio, birth year, death year) by name
  * @function
  * @returns {array} - List of Actor objects with name, bio, birthYear, and deathYear of each.
@@ -247,7 +247,7 @@ app.get('/actors', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 /** 
- * @name Return One Actor
+ * @name GET - Return One Actor
  * @description Return data about an actor (bio, birth year, death year) by name
  * @function
  * @param {string} name - Actor Name
@@ -273,7 +273,7 @@ app.get('/actors/:name', passport.authenticate('jwt', { session: false }), async
 });
 
 /** 
- * @name Return all Users
+ * @name GET - Return all Users
  * @description Returns a list of all users including their data (username, password, first name, last name, email, birthdate). `@dcrichlow1985` user is required for access
  * @function
  * @returns {array} - List of all users with id, username, first name, last name, email, and birth date
@@ -306,7 +306,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
 });
 
 /** 
- * @name Return one User by Username 
+ * @name GET - Return one User by Username 
  * @description Return one user including data (username, password, first name, last name, email, birthdate), by name
  * @function
  * @param {string} username - User's Username
@@ -338,7 +338,7 @@ app.get('/users/:username', passport.authenticate('jwt', { session: false }), as
 });
 
 /** 
- * @name Create a New User Account
+ * @name POST - Create a New User Account
  * @description Allow New Users to register
  * @function
  * @param {object} User
@@ -410,7 +410,7 @@ app.post('/users',
     });
 
 /** 
- * @name Update User Info
+ * @name PUT - Update User Info
  * @description Allow users to update their user info (username)
  * @function
  * @param {object} - An object containing the field and new value to be updated
@@ -421,7 +421,7 @@ app.post('/users',
     birth: Date
  * }
  * @returns {object}
- * {
+ * @example {
     id: 1234,
     username: "jdoe123",
     password: "password"
@@ -476,14 +476,34 @@ app.put('/users/:username', passport.authenticate('jwt', { session: false }),
             })
     });
 
-/** Add a moive to a user's favorites list
- * Used $addToSet instead of $push to prevent duplicates from being added to the array
+/** 
+ * @name PUT - Add a Movie to a User's Favorites List
+ * @description Allow users to add a movie to their list of favorites
+ * @function
+ * @api_endpoint test
+ * @param {string} username - User's Username
+ * @param {string} movieId - ID of favorited movie
+ * @returns {object}
+ * @example {
+    id: 1234,
+    username: "jdoe123",
+    password: "password"
+    first name: "John ",
+    last name: "Doe",
+    email: "johndoe@gmail.com",
+    birth: "1991-01-23"
+    favorites:
+    [
+        "1234", "5678"
+    ]
+}
  */
 app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.username !== req.params.username) {
         res.status(400).send('Permission Denied');
     }
     await Users.findOneAndUpdate({ username: req.params.username }, {
+        //Used $addToSet instead of $push to prevent duplicates from being added to the array
         $addToSet: { favorites: new mongoose.Types.ObjectId(req.params.movieID) }
     },
         { new: true }) //this line makes sure that the update document is returned true
@@ -497,7 +517,27 @@ app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { se
         });
 });
 
-/** Remove a Movie from a user's favorite's list */
+/** 
+ * @name DELETE - Remove a Movie from a user's favorite's list
+ * @description Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed).
+ * @function
+ * @param {string} username - User's Username
+ * @param {string} movieId - ID of favorited movie
+ * @returns {object}
+ * @example {
+    id: 1234,
+    username: "jdoe123",
+    password: "password"
+    first name: "John ",
+    last name: "Doe",
+    email: "johndoe@gmail.com",
+    birth: "1991-01-23"
+    favorites:
+    [
+        "1234", "5678"
+    ]
+}
+*/
 app.delete('/users/:username/favorites/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.username !== req.params.username) {
         res.status(400).send('Permission Denied');
@@ -515,7 +555,13 @@ app.delete('/users/:username/favorites/:movieID', passport.authenticate('jwt', {
         });
 });
 
-/** Unregister a user, Search by username */
+/** 
+ * @name DELETE - Delete User
+ * @description Allow existing users to deregister (showing only a text that a user email has been removed).
+ * @function
+ * @param {string} Username - User's Username
+ * @returns {string} Text message indicating user was deregistered.
+*/
 app.delete('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.username !== req.params.username || req.user.username === "dcrichlow1985") {
         res.status(400).send('Permission Denied');

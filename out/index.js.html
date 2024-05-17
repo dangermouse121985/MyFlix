@@ -70,7 +70,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.static('public'));
 
 /** 
-* @name Return all Movies
+* @name GET - Return all Movies
 * @description Return a list of all movies to the user
 * @function
 * @returns {array} Lis of all movie objects containing an id, title, and url of each.
@@ -449,7 +449,7 @@ app.post('/users',
     birth: Date
  * }
  * @returns {object}
- * {
+ * @example {
     id: 1234,
     username: "jdoe123",
     password: "password"
@@ -489,9 +489,9 @@ app.put('/users/:username', passport.authenticate('jwt', { session: false }),
                 username: req.body.username,
                 password: hashedPassword,
                 first_name: req.body.first_name,
-                last_name: req.params.last_name,
+                last_name: req.body.last_name,
                 email: req.body.email,
-                birth: req.params.birth
+                birth: req.body.birth
             }
         },
             { new: true }) //this line makes sure that the update document is returned
@@ -504,14 +504,34 @@ app.put('/users/:username', passport.authenticate('jwt', { session: false }),
             })
     });
 
-/** Add a moive to a user's favorites list
- * Used $addToSet instead of $push to prevent duplicates from being added to the array
+/** 
+ * @name Add a Movie to a User's Favorites List
+ * @description Allow users to add a movie to their list of favorites
+ * @function
+ * @api_endpoint test
+ * @param {string} username - User's Username
+ * @param {string} movieId - ID of favorited movie
+ * @returns {object}
+ * @example {
+    id: 1234,
+    username: "jdoe123",
+    password: "password"
+    first name: "John ",
+    last name: "Doe",
+    email: "johndoe@gmail.com",
+    birth: "1991-01-23"
+    favorites:
+    [
+        "1234", "5678"
+    ]
+}
  */
 app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.username !== req.params.username) {
         res.status(400).send('Permission Denied');
     }
     await Users.findOneAndUpdate({ username: req.params.username }, {
+        //Used $addToSet instead of $push to prevent duplicates from being added to the array
         $addToSet: { favorites: new mongoose.Types.ObjectId(req.params.movieID) }
     },
         { new: true }) //this line makes sure that the update document is returned true
@@ -525,7 +545,27 @@ app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { se
         });
 });
 
-/** Remove a Movie from a user's favorite's list */
+/** 
+ * @name Remove a Movie from a user's favorite's list
+ * @description Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed).
+ * @function
+ * @param {string} username - User's Username
+ * @param {string} movieId - ID of favorited movie
+ * @returns {object}
+ * @example {
+    id: 1234,
+    username: "jdoe123",
+    password: "password"
+    first name: "John ",
+    last name: "Doe",
+    email: "johndoe@gmail.com",
+    birth: "1991-01-23"
+    favorites:
+    [
+        "1234", "5678"
+    ]
+}
+*/
 app.delete('/users/:username/favorites/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.username !== req.params.username) {
         res.status(400).send('Permission Denied');
@@ -543,7 +583,13 @@ app.delete('/users/:username/favorites/:movieID', passport.authenticate('jwt', {
         });
 });
 
-/** Unregister a user, Search by username */
+/** 
+ * @name Delete User
+ * @description Allow existing users to deregister (showing only a text that a user email has been removed).
+ * @function
+ * @param {string} Username - User's Username
+ * @returns {string} Text message indicating user was deregistered.
+*/
 app.delete('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.username !== req.params.username || req.user.username === "dcrichlow1985") {
         res.status(400).send('Permission Denied');
@@ -584,13 +630,13 @@ app.listen(port, '0.0.0.0', () => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateaNewUserAccount">Create a New User Account</a></li><li><a href="global.html#ReturnAGenrebyName">Return A Genre by Name</a></li><li><a href="global.html#ReturnAllActors">Return All Actors</a></li><li><a href="global.html#ReturnAllDirectors">Return All Directors</a></li><li><a href="global.html#ReturnAllGenres">Return All Genres</a></li><li><a href="global.html#ReturnOneActor">Return One Actor</a></li><li><a href="global.html#ReturnOneMoviebyTitle">Return One Movie by Title</a></li><li><a href="global.html#ReturnallMovies">Return all Movies</a></li><li><a href="global.html#ReturnallUsers">Return all Users</a></li><li><a href="global.html#ReturnoneDirectorbyName">Return one Director by Name</a></li><li><a href="global.html#ReturnoneUserbyUsername">Return one User by Username</a></li><li><a href="global.html#UpdateUserInfo">Update User Info</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AddaMovietoaUser'sFavoritesList">Add a Movie to a User's Favorites List</a></li><li><a href="global.html#CreateaNewUserAccount">Create a New User Account</a></li><li><a href="global.html#DeleteUser">Delete User</a></li><li><a href="global.html#GET-ReturnallMovies">GET - Return all Movies</a></li><li><a href="global.html#RemoveaMoviefromauser'sfavorite'slist">Remove a Movie from a user's favorite's list</a></li><li><a href="global.html#ReturnAGenrebyName">Return A Genre by Name</a></li><li><a href="global.html#ReturnAllActors">Return All Actors</a></li><li><a href="global.html#ReturnAllDirectors">Return All Directors</a></li><li><a href="global.html#ReturnAllGenres">Return All Genres</a></li><li><a href="global.html#ReturnOneActor">Return One Actor</a></li><li><a href="global.html#ReturnOneMoviebyTitle">Return One Movie by Title</a></li><li><a href="global.html#ReturnallUsers">Return all Users</a></li><li><a href="global.html#ReturnoneDirectorbyName">Return one Director by Name</a></li><li><a href="global.html#ReturnoneUserbyUsername">Return one User by Username</a></li><li><a href="global.html#UpdateUserInfo">Update User Info</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Thu May 16 2024 23:48:39 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri May 17 2024 18:07:57 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
