@@ -104,383 +104,7 @@
     
 
     
-    <h4 class="name" id="AddaMovietoaUser'sFavoritesList"><span class="type-signature"></span>Add a Movie to a User's Favorites List<span class="signature">(username, movieId)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Allow users to add a movie to their list of favorites
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>username</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">User's Username</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>movieId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">ID of favorited movie</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line479">line 479</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>{
-    id: 1234,
-    username: "jdoe123",
-    password: "password"
-    first name: "John ",
-    last name: "Doe",
-    email: "johndoe@gmail.com",
-    birth: "1991-01-23"
-    favorites:
-    [
-        "1234", "5678"
-    ]
-}</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="CreateaNewUserAccount"><span class="type-signature"></span>Create a New User Account<span class="signature">(User)</span><span class="type-signature"> &rarr; {string|object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Allow New Users to register
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>User</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">{
-    username: String, (required),
-    password: String, (required),
-    first_name: String, (required),
-    last_name: String, (required),
-    email: String, (required),
-    birth: Date
- }</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line340">line 340</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - Required Field Error | User object containing the user's information
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-|
-
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>{
-    username: String, (required),
-    password: String, (required),
-    first_name: String, (required),
-    last_name: String, (required),
-    email: String, (required),
-    birth: Date
- }</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="DeleteUser"><span class="type-signature"></span>Delete User<span class="signature">(Username)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="DELETE-DeleteUser"><span class="type-signature"></span>DELETE - Delete User<span class="signature">(Username)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
     
@@ -639,130 +263,7 @@
     
 
     
-    <h4 class="name" id="GET-ReturnallMovies"><span class="type-signature"></span>GET - Return all Movies<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Return a list of all movies to the user
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line44">line 44</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    Lis of all movie objects containing an id, title, and url of each.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>[{
-    id: 1234,
-    title: "Batman Begins",
-    url: "/movies/Batman%20Begins",
-}, {
-    id: 1235,
-    title: "The Dark Knight",
-    url: "/moview/Batman%20Begins",
-}]</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="RemoveaMoviefromauser'sfavorite'slist"><span class="type-signature"></span>Remove a Movie from a user's favorite's list<span class="signature">(username, movieId)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="DELETE-RemoveaMoviefromauser'sfavorite'slist"><span class="type-signature"></span>DELETE - Remove a Movie from a user's favorite's list<span class="signature">(username, movieId)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -957,7 +458,7 @@
     
 
     
-    <h4 class="name" id="ReturnAGenrebyName"><span class="type-signature"></span>Return A Genre by Name<span class="signature">(name)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="GET-ReturnAGenrebyName"><span class="type-signature"></span>GET - Return A Genre by Name<span class="signature">(name)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -1124,7 +625,7 @@
     
 
     
-    <h4 class="name" id="ReturnAllActors"><span class="type-signature"></span>Return All Actors<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
+    <h4 class="name" id="GET-ReturnAllActors"><span class="type-signature"></span>GET - Return All Actors<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
     
 
     
@@ -1247,7 +748,7 @@
     
 
     
-    <h4 class="name" id="ReturnAllDirectors"><span class="type-signature"></span>Return All Directors<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
+    <h4 class="name" id="GET-ReturnAllDirectors"><span class="type-signature"></span>GET - Return All Directors<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
     
 
     
@@ -1369,7 +870,7 @@
     
 
     
-    <h4 class="name" id="ReturnAllGenres"><span class="type-signature"></span>Return All Genres<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
+    <h4 class="name" id="GET-ReturnAllGenres"><span class="type-signature"></span>GET - Return All Genres<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
     
 
     
@@ -1490,7 +991,7 @@
     
 
     
-    <h4 class="name" id="ReturnOneActor"><span class="type-signature"></span>Return One Actor<span class="signature">(name)</span><span class="type-signature"> &rarr; {object|null}</span></h4>
+    <h4 class="name" id="GET-ReturnOneActor"><span class="type-signature"></span>GET - Return One Actor<span class="signature">(name)</span><span class="type-signature"> &rarr; {object|null}</span></h4>
     
 
     
@@ -1663,7 +1164,7 @@
     
 
     
-    <h4 class="name" id="ReturnOneMoviebyTitle"><span class="type-signature"></span>Return One Movie by Title<span class="signature">(title)</span><span class="type-signature"> &rarr; {Object|null}</span></h4>
+    <h4 class="name" id="GET-ReturnOneMoviebyTitle"><span class="type-signature"></span>GET - Return One Movie by Title<span class="signature">(title)</span><span class="type-signature"> &rarr; {Object|null}</span></h4>
     
 
     
@@ -1861,7 +1362,130 @@
     
 
     
-    <h4 class="name" id="ReturnallUsers"><span class="type-signature"></span>Return all Users<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
+    <h4 class="name" id="GET-ReturnallMovies"><span class="type-signature"></span>GET - Return all Movies<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Return a list of all movies to the user
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Lis of all movie objects containing an id, title, and url of each.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>[{
+    id: 1234,
+    title: "Batman Begins",
+    url: "/movies/Batman%20Begins",
+}, {
+    id: 1235,
+    title: "The Dark Knight",
+    url: "/moview/Batman%20Begins",
+}]</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="GET-ReturnallUsers"><span class="type-signature"></span>GET - Return all Users<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
     
 
     
@@ -1986,7 +1610,7 @@
     
 
     
-    <h4 class="name" id="ReturnoneDirectorbyName"><span class="type-signature"></span>Return one Director by Name<span class="signature">(name)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="GET-ReturnoneDirectorbyName"><span class="type-signature"></span>GET - Return one Director by Name<span class="signature">(name)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -2155,7 +1779,7 @@
     
 
     
-    <h4 class="name" id="ReturnoneUserbyUsername"><span class="type-signature"></span>Return one User by Username<span class="signature">(username, Password)</span><span class="type-signature"> &rarr; {string|object}</span></h4>
+    <h4 class="name" id="GET-ReturnoneUserbyUsername"><span class="type-signature"></span>GET - Return one User by Username<span class="signature">(username, Password)</span><span class="type-signature"> &rarr; {string|object}</span></h4>
     
 
     
@@ -2352,7 +1976,383 @@
     
 
     
-    <h4 class="name" id="UpdateUserInfo"><span class="type-signature"></span>Update User Info<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="POST-CreateaNewUserAccount"><span class="type-signature"></span>POST - Create a New User Account<span class="signature">(User)</span><span class="type-signature"> &rarr; {string|object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Allow New Users to register
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>User</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">{
+    username: String, (required),
+    password: String, (required),
+    first_name: String, (required),
+    last_name: String, (required),
+    email: String, (required),
+    birth: Date
+ }</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line340">line 340</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Required Field Error | User object containing the user's information
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>{
+    username: String, (required),
+    password: String, (required),
+    first_name: String, (required),
+    last_name: String, (required),
+    email: String, (required),
+    birth: Date
+ }</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="PUT-AddaMovietoaUser'sFavoritesList"><span class="type-signature"></span>PUT - Add a Movie to a User's Favorites List<span class="signature">(username, movieId)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Allow users to add a movie to their list of favorites
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>username</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">User's Username</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>movieId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID of favorited movie</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line479">line 479</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>{
+    id: 1234,
+    username: "jdoe123",
+    password: "password"
+    first name: "John ",
+    last name: "Doe",
+    email: "johndoe@gmail.com",
+    birth: "1991-01-23"
+    favorites:
+    [
+        "1234", "5678"
+    ]
+}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="PUT-UpdateUserInfo"><span class="type-signature"></span>PUT - Update User Info<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -2533,13 +2533,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AddaMovietoaUser'sFavoritesList">Add a Movie to a User's Favorites List</a></li><li><a href="global.html#CreateaNewUserAccount">Create a New User Account</a></li><li><a href="global.html#DeleteUser">Delete User</a></li><li><a href="global.html#GET-ReturnallMovies">GET - Return all Movies</a></li><li><a href="global.html#RemoveaMoviefromauser'sfavorite'slist">Remove a Movie from a user's favorite's list</a></li><li><a href="global.html#ReturnAGenrebyName">Return A Genre by Name</a></li><li><a href="global.html#ReturnAllActors">Return All Actors</a></li><li><a href="global.html#ReturnAllDirectors">Return All Directors</a></li><li><a href="global.html#ReturnAllGenres">Return All Genres</a></li><li><a href="global.html#ReturnOneActor">Return One Actor</a></li><li><a href="global.html#ReturnOneMoviebyTitle">Return One Movie by Title</a></li><li><a href="global.html#ReturnallUsers">Return all Users</a></li><li><a href="global.html#ReturnoneDirectorbyName">Return one Director by Name</a></li><li><a href="global.html#ReturnoneUserbyUsername">Return one User by Username</a></li><li><a href="global.html#UpdateUserInfo">Update User Info</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DELETE-DeleteUser">DELETE - Delete User</a></li><li><a href="global.html#DELETE-RemoveaMoviefromauser'sfavorite'slist">DELETE - Remove a Movie from a user's favorite's list</a></li><li><a href="global.html#GET-ReturnAGenrebyName">GET - Return A Genre by Name</a></li><li><a href="global.html#GET-ReturnAllActors">GET - Return All Actors</a></li><li><a href="global.html#GET-ReturnAllDirectors">GET - Return All Directors</a></li><li><a href="global.html#GET-ReturnAllGenres">GET - Return All Genres</a></li><li><a href="global.html#GET-ReturnOneActor">GET - Return One Actor</a></li><li><a href="global.html#GET-ReturnOneMoviebyTitle">GET - Return One Movie by Title</a></li><li><a href="global.html#GET-ReturnallMovies">GET - Return all Movies</a></li><li><a href="global.html#GET-ReturnallUsers">GET - Return all Users</a></li><li><a href="global.html#GET-ReturnoneDirectorbyName">GET - Return one Director by Name</a></li><li><a href="global.html#GET-ReturnoneUserbyUsername">GET - Return one User by Username</a></li><li><a href="global.html#POST-CreateaNewUserAccount">POST - Create a New User Account</a></li><li><a href="global.html#PUT-AddaMovietoaUser'sFavoritesList">PUT - Add a Movie to a User's Favorites List</a></li><li><a href="global.html#PUT-UpdateUserInfo">PUT - Update User Info</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri May 17 2024 18:07:57 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri May 17 2024 18:09:36 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

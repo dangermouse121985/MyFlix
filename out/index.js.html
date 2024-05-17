@@ -97,7 +97,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 /** 
- * @name Return One Movie by Title
+ * @name GET - Return One Movie by Title
  * @description Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the userv
  * @function
  * @param {string} title - Movie Title
@@ -148,7 +148,7 @@ app.get('/movies/:title', passport.authenticate('jwt', { session: false }), asyn
 });
 
 /** 
- * @name Return All Genres 
+ * @name GET - Return All Genres 
  * @description Return a list of all genres including their description
  * @function
  * @returns {array} - List of all Genres with names and descriptions
@@ -174,7 +174,7 @@ app.get('/genres', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 /** 
- * @name Return A Genre by Name
+ * @name GET - Return A Genre by Name
  * @description Return a list of all genres including their description
  * @function
  * @param {string} name - Genre Name
@@ -197,7 +197,7 @@ app.get('/genres/:name', passport.authenticate('jwt', { session: false }), async
 });
 
 /** 
- * @name Return All Directors 
+ * @name GET - Return All Directors 
  * @description Return a list of all directors including their data (bio, birth year, death year)
  * @function
  * @returns {array} - List of director objects with name, bio, birthYear, and deathYear of each director.
@@ -223,7 +223,7 @@ app.get('/directors', passport.authenticate('jwt', { session: false }), async (r
 });
 
 /** 
- * @name Return one Director by Name 
+ * @name GET - Return one Director by Name 
  * @description Return data about a director (bio, birth year, death year) by name
  * @function
  * @param {string} name - Director Name
@@ -248,7 +248,7 @@ app.get('/directors/:name', passport.authenticate('jwt', { session: false }), as
 });
 
 /** 
- * @name Return All Actors 
+ * @name GET - Return All Actors 
  * @description Return a list of all actors including their data (bio, birth year, death year) by name
  * @function
  * @returns {array} - List of Actor objects with name, bio, birthYear, and deathYear of each.
@@ -275,7 +275,7 @@ app.get('/actors', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 /** 
- * @name Return One Actor
+ * @name GET - Return One Actor
  * @description Return data about an actor (bio, birth year, death year) by name
  * @function
  * @param {string} name - Actor Name
@@ -301,7 +301,7 @@ app.get('/actors/:name', passport.authenticate('jwt', { session: false }), async
 });
 
 /** 
- * @name Return all Users
+ * @name GET - Return all Users
  * @description Returns a list of all users including their data (username, password, first name, last name, email, birthdate). `@dcrichlow1985` user is required for access
  * @function
  * @returns {array} - List of all users with id, username, first name, last name, email, and birth date
@@ -334,7 +334,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
 });
 
 /** 
- * @name Return one User by Username 
+ * @name GET - Return one User by Username 
  * @description Return one user including data (username, password, first name, last name, email, birthdate), by name
  * @function
  * @param {string} username - User's Username
@@ -366,7 +366,7 @@ app.get('/users/:username', passport.authenticate('jwt', { session: false }), as
 });
 
 /** 
- * @name Create a New User Account
+ * @name POST - Create a New User Account
  * @description Allow New Users to register
  * @function
  * @param {object} User
@@ -438,7 +438,7 @@ app.post('/users',
     });
 
 /** 
- * @name Update User Info
+ * @name PUT - Update User Info
  * @description Allow users to update their user info (username)
  * @function
  * @param {object} - An object containing the field and new value to be updated
@@ -505,7 +505,7 @@ app.put('/users/:username', passport.authenticate('jwt', { session: false }),
     });
 
 /** 
- * @name Add a Movie to a User's Favorites List
+ * @name PUT - Add a Movie to a User's Favorites List
  * @description Allow users to add a movie to their list of favorites
  * @function
  * @api_endpoint test
@@ -546,7 +546,7 @@ app.put('/users/:username/favorites/:movieID', passport.authenticate('jwt', { se
 });
 
 /** 
- * @name Remove a Movie from a user's favorite's list
+ * @name DELETE - Remove a Movie from a user's favorite's list
  * @description Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed).
  * @function
  * @param {string} username - User's Username
@@ -584,7 +584,7 @@ app.delete('/users/:username/favorites/:movieID', passport.authenticate('jwt', {
 });
 
 /** 
- * @name Delete User
+ * @name DELETE - Delete User
  * @description Allow existing users to deregister (showing only a text that a user email has been removed).
  * @function
  * @param {string} Username - User's Username
@@ -630,13 +630,13 @@ app.listen(port, '0.0.0.0', () => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AddaMovietoaUser'sFavoritesList">Add a Movie to a User's Favorites List</a></li><li><a href="global.html#CreateaNewUserAccount">Create a New User Account</a></li><li><a href="global.html#DeleteUser">Delete User</a></li><li><a href="global.html#GET-ReturnallMovies">GET - Return all Movies</a></li><li><a href="global.html#RemoveaMoviefromauser'sfavorite'slist">Remove a Movie from a user's favorite's list</a></li><li><a href="global.html#ReturnAGenrebyName">Return A Genre by Name</a></li><li><a href="global.html#ReturnAllActors">Return All Actors</a></li><li><a href="global.html#ReturnAllDirectors">Return All Directors</a></li><li><a href="global.html#ReturnAllGenres">Return All Genres</a></li><li><a href="global.html#ReturnOneActor">Return One Actor</a></li><li><a href="global.html#ReturnOneMoviebyTitle">Return One Movie by Title</a></li><li><a href="global.html#ReturnallUsers">Return all Users</a></li><li><a href="global.html#ReturnoneDirectorbyName">Return one Director by Name</a></li><li><a href="global.html#ReturnoneUserbyUsername">Return one User by Username</a></li><li><a href="global.html#UpdateUserInfo">Update User Info</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DELETE-DeleteUser">DELETE - Delete User</a></li><li><a href="global.html#DELETE-RemoveaMoviefromauser'sfavorite'slist">DELETE - Remove a Movie from a user's favorite's list</a></li><li><a href="global.html#GET-ReturnAGenrebyName">GET - Return A Genre by Name</a></li><li><a href="global.html#GET-ReturnAllActors">GET - Return All Actors</a></li><li><a href="global.html#GET-ReturnAllDirectors">GET - Return All Directors</a></li><li><a href="global.html#GET-ReturnAllGenres">GET - Return All Genres</a></li><li><a href="global.html#GET-ReturnOneActor">GET - Return One Actor</a></li><li><a href="global.html#GET-ReturnOneMoviebyTitle">GET - Return One Movie by Title</a></li><li><a href="global.html#GET-ReturnallMovies">GET - Return all Movies</a></li><li><a href="global.html#GET-ReturnallUsers">GET - Return all Users</a></li><li><a href="global.html#GET-ReturnoneDirectorbyName">GET - Return one Director by Name</a></li><li><a href="global.html#GET-ReturnoneUserbyUsername">GET - Return one User by Username</a></li><li><a href="global.html#POST-CreateaNewUserAccount">POST - Create a New User Account</a></li><li><a href="global.html#PUT-AddaMovietoaUser'sFavoritesList">PUT - Add a Movie to a User's Favorites List</a></li><li><a href="global.html#PUT-UpdateUserInfo">PUT - Update User Info</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri May 17 2024 18:07:57 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri May 17 2024 18:09:36 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
