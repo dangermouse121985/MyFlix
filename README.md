@@ -117,4 +117,4 @@ Contributions are welcome! Please follow these steps to contribute:
 
 This project is licensed under the MIT License.
 
-**This readME File was built using he help of ChatGPT**
+**This readME File was built using the help of ChatGPT**
