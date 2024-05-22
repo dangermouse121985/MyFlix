@@ -1,6 +1,6 @@
 # myFlix Server-Side Component
 
-This repository contains the server-side code for the myFlix web application. The application provides users with access to information about movies, directors, and genres, and allows them to sign up, update their personal information, and create a list of their favorite movies.
+This repository contains the server-side code for the myFlix web application. The application provides users with information about movies, directors, and genres. It allows them to sign up, update their personal information, and create a list of their favorite movies.
 
 ## Table of Contents
 
@@ -8,10 +8,10 @@ This repository contains the server-side code for the myFlix web application. Th
 - [Context](#context)
 - [The 5 W's](#the-5-ws)
 - [Design Criteria](#design-criteria)
-  - [User Stories](#user-stories)
-  - [Feature Requirements](#feature-requirements)
-  - [Essential Features](#essential-features)
-  - [Optional Features](#optional-features)
+   - [User Stories](#user-stories)
+   - [Feature Requirements](#feature-requirements)
+   - [Essential Features](#essential-features)
+   - [Optional Features](#optional-features)
 - [Technical Requirements](#technical-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -20,25 +20,25 @@ This repository contains the server-side code for the myFlix web application. Th
 
 ## Objective
 
-To build the server-side component of a “movies” web application. The application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.
+To build the server-side component of a “movies” web application. The application will provide users with information about different movies, directors, and genres. Users can sign up, update their personal information, and create a list of their favorite movies.
 
 ## Context
 
-In today's tech landscape, JavaScript developers must be proficient in both frontend and backend development. This project focuses on creating a REST API for the myFlix application, interacting with a database to store movie data. The complete tech stack used is the MERN (MongoDB, Express, React, Node.js) stack. This server-side component will eventually be paired with a client-side interface built using React.
+In today's tech landscape, JavaScript developers must be proficient in both frontend and backend development. This project focuses on creating a REST API for the myFlix application, interacting with a database to store movie data. The complete tech stack used is the MERN (MongoDB, Express, React, Node.js) stack. This server-side component is currently accessed by two client-side interfaces: one with React and one with Angular.
 
 ## The 5 W's
 
-- **Who**: Frontend developers who will use the server-side code to build the client-side application. End users will be movie enthusiasts who want to access movie information.
+- **Who**: Frontend developers using the server-side code to build the client-side application. End users will be movie enthusiasts who want to access movie information.
 - **What**: The complete server-side of the web application, including the server, business logic, and database layers. It will feature a REST API built using Node.js, Express, and MongoDB.
 - **When**: The server-side component will be used whenever users interact with the myFlix application to access movie information or update their profiles.
 - **Where**: The application will be hosted online, making it accessible from any device.
-- **Why**: To provide movie enthusiasts with information about movies, directors, and genres, and to demonstrate full-stack JavaScript development skills.
+- **Why**: To provide movie enthusiasts with information about movies, directors, and genres and to demonstrate full-stack JavaScript development skills.
 
 ## Design Criteria
 
 ### User Stories
 
-- As a user, I want to receive information on movies, directors, and genres so that I can learn more about movies I’ve watched or am interested in.
+- As a user, I want to receive information on movies, directors, and genres to learn more about movies I’ve watched or am interested in.
 - As a user, I want to create a profile to save data about my favorite movies.
 
 ### Feature Requirements
@@ -65,7 +65,7 @@ In today's tech landscape, JavaScript developers must be proficient in both fron
 ## Technical Requirements
 
 - The API is a Node.js and Express application.
-- The API uses REST architecture, with URL endpoints corresponding to the data operations listed above.
+- The API uses REST architecture, with URL endpoints corresponding to the above data operations.
 - The database is built using MongoDB.
 - The business logic is modeled with Mongoose.
 - The API provides movie information in JSON format.
@@ -80,20 +80,20 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/your-username/myFlix-server.git
-   ```
+`bash
+  git clone https://github.com/your-username/myFlix-server.git
+  `
 
 2. **Navigate to the project directory:**
 
-   ```bash
-   cd myFlix-server
-   ```
+`bash
+  cd myFlix-server
+  `
 
 3. **Install the dependencies:**
-   ```bash
-   npm install
-   ```
+     `bash
+  npm install
+  `
 
 ## Usage
 
