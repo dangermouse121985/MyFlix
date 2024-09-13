@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express'),
     fs = require('fs'),
     morgan = require('morgan'),
@@ -6,7 +7,14 @@ const express = require('express'),
     Models = require('./models.js'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    { check, validationResult } = require('express-validator');
+    { check, validationResult } = require('express-validator'),
+    fileUpload = require('express-fileupload'),
+    { S3Client, ListObjectsV2Command, PutObjectCommand } = require('@aws-sdk/client-s3'),
+    dotenv = require('dotenv');
+
+const s3Client = new S3Client({
+    region: 'us-east-1'
+});
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -15,8 +23,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(fileUpload());
+
 app.use(cors());
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://dacflix.netlify.app', 'https://dangermouse121985.github.io'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://dacflix.netlify.app', 'https://dangermouse121985.github.io', 'https://dacflix-client.s3.amazonaws.com', 'http://dacflix-client.s3-website-us-east-1.amazonaws.com'];
 
 app.use(cors({
     origin: (origin, callback) => {
@@ -33,13 +43,85 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongodbURL = process.env.MONGODB_AWS_URL;
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`${mongodbURL}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), { flags: 'a' });
 
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.static('public'));
+
+app.get('/resized-images/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try {
+        const listObjectsParams = {
+            Bucket: 'dacflix-client',
+            Prefix: `resizedImages/${req.params.movieID}`
+        };
+
+        const listObjectsResponse = await s3Client.send(new ListObjectsV2Command(listObjectsParams));
+
+        // Check if Contents is defined and has items
+        if (!listObjectsResponse.Contents || listObjectsResponse.Contents.length === 0) {
+            console.error('No contents found in the bucket.');
+            return res.status(404).send('No images found.');
+        }
+
+        // Extract the URLs of the images
+        const imageUrls = listObjectsResponse.Contents
+            .filter(item => item.Key !== `resizedImages/${req.params.movieID}`)
+            .map(item => {
+                return `https://${listObjectsParams.Bucket}.s3.amazonaws.com/${item.Key}`;
+            });
+
+        res.status(200).json(imageUrls);
+    } catch (err) {
+        console.error('Error retrieving images from S3:', err);
+        res.status(500).send('Error retrieving images from S3');
+    }
+});
+
+app.post('/images:movieTitle', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    if (!req.files || !req.files.image) {
+        return res.status(400).send('No file uploaded.');
+    }
+
+    const file = req.files.image;
+    const fileName = req.files.image.name;
+    const tempPath = `/home/temp/images/${fileName}`;
+
+    file.mv(tempPath, async (err) => {
+        if (err) {
+            console.error('Error saving file to temp path:', err);
+            return res.status(500).send('Error saving file to temp path.');
+        }
+
+        try {
+            const fileData = fs.readFileSync(tempPath);
+            const uploadCommand = new PutObjectCommand({
+                Bucket: 'dacflix-client',
+                Key: `images/${req.params.movieTitle}/${fileName}`,
+                Body: fileData,
+                ContentType: file.mimetype,
+            });
+
+            await s3Client.send(uploadCommand);
+
+            const dataUrl = `https://${uploadCommand.input.Bucket}.s3.amazonaws.com/images/${fileName}`;
+
+            fs.unlink(tempPath, (err) => {
+                if (err) {
+                    console.error('Failed to delete temp file', err);
+                }
+            });
+
+            res.send(`File uploaded successfully to ${dataUrl}`);
+        } catch (err) {
+            console.error('Error uploading file to S3:', err);
+            res.status(500).send('Error uploading file to S3');
+        }
+    });
+});
 
 /** 
 * @name GET - Return all Movies
@@ -589,7 +671,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something Broke!');
 });
 
-const port = process.env.PORT || 8080;
+const port =/* process.env.PORT ||*/ 8080;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port ' + port);
 });
