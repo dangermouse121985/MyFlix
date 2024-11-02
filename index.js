@@ -43,9 +43,9 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-const mongodbURL = process.env.MONGODB_AWS_URL;
-//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(`${mongodbURL}`, { useNewUrlParser: true, useUnifiedTopology: true });
+//const mongodbURL = process.env.MONGODB_AWS_URL;
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(`${mongodbURL}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), { flags: 'a' });
 
